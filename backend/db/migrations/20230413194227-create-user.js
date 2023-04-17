@@ -13,9 +13,6 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-        // references: {
-        //   model: 'Bookings'
-        // }//not too sure if we add references here.
       },
       firstName: {
         type: Sequelize.STRING(30),
