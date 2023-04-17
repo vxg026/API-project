@@ -22,6 +22,7 @@ const validateLogin = [
     .withMessage('Please provide a password.'),
   handleValidationErrors
 ];
+
 // Log in
 router.post(
     '/', validateLogin,
@@ -73,6 +74,8 @@ router.post(
       if (user) {
         const safeUser = {
           id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
           email: user.email,
           username: user.username,
         };
@@ -82,7 +85,6 @@ router.post(
       } else return res.json({ user: null });
     }
   );
-
 
 
 
