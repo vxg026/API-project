@@ -126,7 +126,7 @@ router.get( '/', async (req, res) => {
 
 //   router.put('/:spotId', async (req, res)=>{
 //     const { address, city, state, country, lat, lng, name, description, price } = req.body
-
+//     const spot = await S
 
 //   })
   module.exports = router;
