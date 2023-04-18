@@ -33,7 +33,7 @@ module.exports = {
       },
       country:{
         type: Sequelize.STRING
-      },
+      },//new comment
       lat: {
         type: Sequelize.DECIMAL
       },
