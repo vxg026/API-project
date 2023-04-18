@@ -32,7 +32,7 @@ module.exports = {
      * await queryInterface.dropTable('users');
      */
 
-    options.tableName = "Spots";
+    options.columnName = "country";
     return queryInterface.removeColumn(options);
   }
 };
