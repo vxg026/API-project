@@ -44,6 +44,19 @@ const validateCreatePost = [
 
     handleValidationErrors
   ];
+router.get( '/current', async (req, res)=>{
+    const userId = req.user.id;
+  
+    const allSpots = await Spot.findAll({
+        where: {
+            ownerId:userId
+        }
+    });
+    console.log(req.params.id)
+    return res.json(allSpots)
+})
+
+
 
 router.get( '/', async (req, res) => {
     const allSpots = await Spot.findAll();
