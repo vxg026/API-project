@@ -58,7 +58,12 @@ router.get('/:spotId', async (req, res)=>{
     const spots = await Spot.findAll({
             where: {
                 id: req.params.spotId
-            }
+            },
+            include:[
+                {
+                    model: SpotImage
+                }
+            ]
         })
         return res.json(spots)
     })
@@ -97,6 +102,8 @@ router.get( '/', async (req, res) => {
         preview: newSpotImage.preview
     })
   })
+
+
   router.post('/', validateCreatePost, async (req, res)=>{
     const {address, city, state, country, lat, lng, name, description, price} = req.body
 
@@ -116,4 +123,10 @@ router.get( '/', async (req, res) => {
   })
 //   router.post()
 
+
+//   router.put('/:spotId', async (req, res)=>{
+//     const { address, city, state, country, lat, lng, name, description, price } = req.body
+
+
+//   })
   module.exports = router;
