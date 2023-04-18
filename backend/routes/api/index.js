@@ -16,7 +16,7 @@ router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 //would look like router.get('/')
-// router.use('/spots', spotsRouter);
+router.use('/spots', spotsRouter);
 
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });
