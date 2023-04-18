@@ -18,7 +18,8 @@ module.exports = {
       ownerId: {
         type: Sequelize.INTEGER,
         references:{
-          model:"Users"
+          model:"Users",
+          key: "id"
         },
         onDelete:"CASCADE"
       },
@@ -31,9 +32,9 @@ module.exports = {
       state: {
         type: Sequelize.STRING
       },
-      // country:{
-      //   type: Sequelize.STRING
-      // },
+      country:{
+        type: Sequelize.STRING
+      },
       lat: {
         type: Sequelize.DECIMAL
       },
