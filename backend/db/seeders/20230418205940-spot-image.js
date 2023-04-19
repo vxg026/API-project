@@ -38,7 +38,7 @@ module.exports = {
          {
           spotId: 2,
           url: "urlforthefourthone",
-          preview: true
+          preview: false
          }
       ], {});
 
