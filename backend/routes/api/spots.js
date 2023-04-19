@@ -56,7 +56,9 @@ router.get( '/current', requireAuth, async (req, res)=>{
     });
     return res.json({"Spots": allSpots})
 })
+router.get('/:spotId/reviews', async (req, res)=>{
 
+})
 router.get('/:spotId', async (req, res)=>{
         const spot = await Spot.findByPk(req.params.spotId)
         if(!spot)
@@ -86,20 +88,54 @@ router.get('/:spotId', async (req, res)=>{
 
 router.get( '/', async (req, res) => {
 
-    // const reviews = await Review.findAll();
+    // const reviews = await Review.findAll({
+
+    // });
     // const sumReviews = reviews.reduce((sum, review)=>(
     //     sum + review.stars
     // ), 0);
     // const avgReview =sumReviews/reviews.length;
     //  return res.json(avgReview)
 
+
     const spots = await Spot.findAll({
        include: [
        {
-        model:SpotImage}
+        model:SpotImage},
+        {model :Review}
     ]
 })
-    return res.json(spots)
+// spots.toJson()
+let spotsList = [];
+
+
+
+spots.forEach(spot=>{
+    spotsList.push(spot.toJSON())
+})
+
+spotsList.forEach(spot=>{
+  let star=0;
+  let counter=0;
+    spot.Reviews.forEach(review=>{
+       star += review.stars
+       counter++
+    })
+    spot.avgRating= star/counter
+
+    spot.SpotImages.forEach(image=>{
+        // console.log(image.preview)
+        if(image.preview === true){
+            spot.previewImage = image.url
+            console.log(spot.previewImage)
+        }
+    })
+})
+spotsList.forEach(spot=>delete spot.SpotImages)
+spotsList.forEach(spot=>delete spot.Reviews)
+
+console.log(spotsList)
+    return res.json({Spots: spotsList})
     }
 )
 
