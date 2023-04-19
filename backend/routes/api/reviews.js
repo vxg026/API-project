@@ -25,6 +25,7 @@ router.get( '/current', requireAuth, async (req, res)=>{
         },
         {
             model: Spot,
+
             attributes:[
                 "id",
                 "ownerId",
@@ -36,7 +37,9 @@ router.get( '/current', requireAuth, async (req, res)=>{
                 "lng",
                 "name",
                 "price"
-            ]
+            ], include: {
+            model: SpotImage,
+            }
         },
         {
             model: ReviewImage,
@@ -44,8 +47,26 @@ router.get( '/current', requireAuth, async (req, res)=>{
         }
     ]
 })
+
+let list = [];
+
+allReviews.forEach(review=>{
+    list.push(review.toJSON())
+})
+
+    list.forEach(review =>{
+      review.Spot.SpotImages.forEach(web=>{
+            if(web.preview===true){
+                review.Spot.previewImage = web.url
+                console.log(review.Spot.previewImage )
+            }
+            // Spot.forEach(spot=> delete )
+        })
+    })
+list.forEach(review=> delete review.Spot.SpotImages)
 // const tweetOwner = await allReviews.getUser();
-    res.json({Reviews:allReviews})
+    // res.json({Reviews:allReviews})
+    res.json({Reviews:list})
 }
 )
 

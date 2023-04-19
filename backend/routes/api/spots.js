@@ -52,10 +52,29 @@ router.get( '/current', requireAuth, async (req, res)=>{
     const allSpots = await Spot.findAll({
         where: {
             ownerId:userId
-        }
+        },
+        include:[
+            {model: SpotImage}
+        ]
     });
-    return res.json({"Spots": allSpots})
+
+    let spotsList = [];
+    allSpots.forEach(spot=>{
+        spotsList.push(spot.toJSON())
+    })
+    spotsList.forEach(spot=>{
+        spot.SpotImages.forEach(image =>{
+            if(image.preview === true){
+                spot.previewImage = image.url
+            }
+        })
+    })
+    spotsList.forEach(spot => delete spot.SpotImages)
+    return res.json({Spots: spotsList})
 })
+
+
+
 router.get('/:spotId/reviews', async (req, res)=>{
 
 })
@@ -87,17 +106,6 @@ router.get('/:spotId', async (req, res)=>{
 
 
 router.get( '/', async (req, res) => {
-
-    // const reviews = await Review.findAll({
-
-    // });
-    // const sumReviews = reviews.reduce((sum, review)=>(
-    //     sum + review.stars
-    // ), 0);
-    // const avgReview =sumReviews/reviews.length;
-    //  return res.json(avgReview)
-
-
     const spots = await Spot.findAll({
        include: [
        {
@@ -107,8 +115,6 @@ router.get( '/', async (req, res) => {
 })
 // spots.toJson()
 let spotsList = [];
-
-
 
 spots.forEach(spot=>{
     spotsList.push(spot.toJSON())
@@ -175,6 +181,7 @@ console.log(spotsList)
     const {address, city, state, country, lat, lng, name, description, price} = req.body
 
     const newSpot = await Spot.create({
+        ownerId: req.user.id,
         address,
         city,
         state,
