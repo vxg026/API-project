@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Spot, SpotImage, Review} = require('../../db/models');
+const { User, Spot, SpotImage, Review, ReviewImage} = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -45,6 +45,17 @@ const validateCreatePost = [
     handleValidationErrors
   ];
 
+  const validateCreateReview = [
+    check('review')
+    .exists({ checkFalsy: true })
+    .withMessage('Review is required'),
+    check('stars')
+    .exists({ checkFalsy: true })
+    .withMessage('Star Rating is required'),
+    handleValidationErrors
+  ]
+
+
 router.get( '/current', requireAuth, async (req, res)=>{
 
     const userId = req.user.id;
@@ -76,7 +87,31 @@ router.get( '/current', requireAuth, async (req, res)=>{
 
 
 router.get('/:spotId/reviews', async (req, res)=>{
+    const spot = await Spot.findByPk(req.params.spotId)
+    if(!spot)
+    return res.status(404).json({
+        "message":"Spot couldn't be found"
+    })
+    const reviews = await Review.findAll({
+        where:{
+            spotId: req.params.spotId
+        },
+        include:[{
+            model: User
+        },
+        {
+            model:ReviewImage,
 
+                attributes: ["id", "url"]
+
+        }
+    ]
+        // include:[{
+        //     model: User
+        // }]
+    })
+
+    res.json(reviews)
 })
 router.get('/:spotId', async (req, res)=>{
         const spot = await Spot.findByPk(req.params.spotId)
@@ -176,6 +211,31 @@ console.log(spotsList)
     })
   })
 
+  router.post('/:spotId/reviews', requireAuth, validateCreateReview,  async (req, res)=>{
+    const userId = req.user.id
+    const spot = await Spot.findByPk(req.params.spotId)
+    const {review, stars} = req.body;
+    if(!spot){
+        return res.status(404).json({message: "Spot couldn't be found"})
+    }
+    const reviewForSpot = await Review.findOne({
+        where: {
+            spotId: req.params.spotId,
+            userId:req.user.id
+        }
+    })
+    if(!reviewForSpot){
+        return res.status(500).json({message: "User already has a review for this spot"})
+    }
+    const newReview = await Review.create({
+        userId,
+        spotId: spot.id,
+        review,
+        stars
+
+    })
+    res.status(201).json(newReview)
+  })
 
   router.post('/', requireAuth, validateCreatePost, async (req, res)=>{
     const {address, city, state, country, lat, lng, name, description, price} = req.body
