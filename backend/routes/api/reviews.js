@@ -103,6 +103,7 @@ router.post('/:reviewId/images', async (req, res)=>{
     }
     const newImage = await ReviewImage.create({
         url,
+        
 
     })
     res.status(201).json(
@@ -121,7 +122,7 @@ router.put('/:reviewId', requireAuth, async (req, res)=>{
             "message": "Review couldn't be found"
         })
     }
-    
+
     if(req.user.id !== updateReview.userId){
         return res.status(403).json({
             "message": "Review must belong to the current user"
