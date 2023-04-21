@@ -75,7 +75,7 @@ allReviews.forEach(review=>{
     })
 list.forEach(review=> delete review.Spot.SpotImages)
 
-    res.json({Reviews:list})
+    return res.status(200).json({Reviews:list})
 }
 )
 
@@ -119,8 +119,8 @@ router.post('/:reviewId/images', async (req, res)=>{
 
     const newImage = await ReviewImage.create({
     //    id: newImage.id,
-       url
-        // reviewId
+       url,
+        reviewId
 
 
     })

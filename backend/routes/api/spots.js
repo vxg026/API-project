@@ -122,6 +122,7 @@ router.get( '/current', requireAuth, async (req, res)=>{
 
     const userId = req.user.id;
 
+
     const allSpots = await Spot.findAll({
         where: {
             ownerId:userId
@@ -153,6 +154,8 @@ router.get( '/current', requireAuth, async (req, res)=>{
     })
     spotsList.forEach(spot=>delete spot.Reviews)
     spotsList.forEach(spot => delete spot.SpotImages)
+
+    await spotsList.spot.spotImages
     return res.json({Spots: spotsList})
 })
 
@@ -225,7 +228,7 @@ router.get('/:spotId/reviews', async (req, res)=>{
         // }]
     })
 
-    res.json({Reviews: reviews})
+    return res.status(200).json({Reviews: reviews})
 })
 router.get('/:spotId', async (req, res)=>{
         const spot = await Spot.findByPk(req.params.spotId)
@@ -435,6 +438,7 @@ console.log(spotsList)
         preview,
     })
     await newSpotImage.save()
+    // await spotImage.addSpotImage(newSpotImage)
     return res.json({
         id: newSpotImage.id,
         url: newSpotImage.url,
