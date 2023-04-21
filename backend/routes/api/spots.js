@@ -426,7 +426,7 @@ console.log(spotsList)
     }
     if(req.user.id !== spotImage.ownerId){
         return res.status(403).json({
-            "message":"Spot must belong to the current user"
+            "message":"Forbidden"
         })
     }
     const newSpotImage = SpotImage.build({
@@ -589,13 +589,13 @@ if(hasConflict) return;
 
      if(!updateSpot){
         return res.status(404).json({
-            "message": "Forbidden"
+            "message": "Spot couldn't be found"
         })
     }
 
     if(req.user.id !== updateSpot.ownerId){
         return res.status(403).json({
-            "message":"Spot must belong to the current user"
+            "message":"Forbidden"
         })
     }
 

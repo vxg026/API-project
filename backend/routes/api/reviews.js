@@ -94,6 +94,9 @@ router.post('/:reviewId/images', async (req, res)=>{
     const images = await ReviewImage.findAll({
         where: {
             reviewId
+        },
+        attributes:{
+            exclude: ["createdAt", "updatedAt"]
         }
     })
     // search for all the current review images, cant exceed 10.
@@ -115,13 +118,15 @@ router.post('/:reviewId/images', async (req, res)=>{
     }
 
     const newImage = await ReviewImage.create({
-        url,
-        reviewId
+    //    id: newImage.id,
+       url
+        // reviewId
 
 
     })
     res.status(201).json(
-        newImage
+       { id: newImage.id,
+        url: newImage.url}
     )
 })
 
