@@ -117,47 +117,120 @@ const validateCreatePost = [
 
 
 //get all spots of current user
-
-router.get( '/current', requireAuth, async (req, res)=>{
-
-    const userId = req.user.id;
-
-
-    const allSpots = await Spot.findAll({
+router.get('/current', requireAuth, async (req, res, next) => {
+    const spots = await Spot.findAll({
         where: {
-            ownerId:userId
+            ownerId: req.user.id // instance of current user logged in
         },
-        include:[
-            {model: SpotImage},
-            {model: Review}
+        include: [{
+            model: SpotImage
+        },
+        {
+            model: Review
+        }
         ]
-    });
-
-    let spotsList = [];
-    allSpots.forEach(spot=>{
-        spotsList.push(spot.toJSON())
     })
-    spotsList.forEach(spot=>{
-        let star=0;
-  let counter=0;
-    spot.Reviews.forEach(review=>{
-       star += review.stars
-       counter++
-    })
-    spot.avgRating= star/counter
 
-        spot.SpotImages.forEach(image =>{
-            if(image.preview === true){
-                spot.previewImage = image.url
+    const list = [];
+    spots.forEach(spot => {
+        let total = 0
+        const spotJSON = spot.toJSON()
+
+        spotJSON.Reviews.forEach(ele => {
+            total += ele.stars
+        })
+        const avg = total / spotJSON.Reviews.length
+        spotJSON.avgRating = avg
+
+        spotJSON.SpotImages.forEach(ele => {
+            if (ele.preview === true) {
+                spotJSON.previewImage = ele.url
+            } else {
+                spotJSON.previewImage = 'No preview available'
             }
         })
-    })
-    spotsList.forEach(spot=>delete spot.Reviews)
-    spotsList.forEach(spot => delete spot.SpotImages)
 
-    await spotsList.spot.spotImages
-    return res.json({Spots: spotsList})
+        delete spotJSON.Reviews // deletes Reviews included
+        delete spotJSON.SpotImages // deletes SpotImages included
+        list.push(spotJSON)
+    })
+
+    return res.json({ Spots: list })
 })
+
+
+
+// router.get( '/current', requireAuth, async (req, res)=>{
+
+//     const userId = req.user.id;
+
+
+//     const allSpots = await Spot.findAll({
+//         where: {
+//             ownerId:userId
+//         },
+//         include:[
+//             {model: SpotImage},
+//             {model: Review}
+//         ]
+//     });
+
+//     let spotsList = [];
+//     allSpots.forEach(spot=>{
+//         spotsList.push(spot.toJSON())
+//     })
+// // for(let i = 0; i< allSpots.length; i++){
+// //     spotsList.push(allSpots[i].toJSON())
+// // }
+// // console.log(spotsList)
+// for(let i = 0; i< spotsList.length; i++){
+//     let star = 0;
+//     let counter = 0;
+//     // console.log(spotsList[0])
+//     let spot = spotsList[i]
+//     // console.log(spot)
+//     //******************* */
+//     // for(let j = 0; j<spot.Reviews.length; j++){
+//     //     // console.log(spot.Reviews)
+//     //     let review = spot.Reviews[j]
+//     //     star+=review.stars
+//     //     counter++
+//     //     delete spot.Reviews
+//     // }
+//     // spot.avgRating= star/counter
+//     // console.log(spot)
+//     //******************** */
+// //     for(let j = 0; j<spot.SpotImages.length; j++){
+// //         console.log(spot.SpotImages)
+// //         let image = spot.SpotImages[j];
+// //         if(image.preview === true){
+// //             spot.previewImage = image.url
+// //         }
+// //         delete spot.SpotImages
+// //     }
+// // }
+// //****************** */
+//     spotsList.forEach(spot=>{
+//         let star=0;
+//   let counter=0;
+//     spot.Reviews.forEach(review=>{
+//        star += review.stars
+//        counter++
+//     })
+
+
+//         spot.SpotImages.forEach(image =>{
+//             if(image.preview === true){
+//                 spot.previewImage = image.url
+//             }
+//         })
+//     })
+//     spotsList.forEach(spot=>delete spot.Reviews)
+//     spotsList.forEach(spot => delete spot.SpotImages)
+
+//     // await spotsList.spot.spotImages
+//     return res.json({Spots: spotsList})
+// })
 
 //get all bookings by spot
 router.get('/:spotId/bookings', requireAuth, async (req, res)=>{
