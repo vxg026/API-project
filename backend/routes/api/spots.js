@@ -367,7 +367,7 @@ if(maxPrice){
        [Op.lte]:  maxPrice
 }
 }
-if(maxPrice && maxPrice){
+if(minPrice && maxPrice){
     where.price = {
         [Op.between]:
         [minPrice, maxPrice]
