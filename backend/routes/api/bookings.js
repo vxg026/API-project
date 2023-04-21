@@ -179,22 +179,27 @@ router.put('/:bookingId', requireAuth, async (req, res)=>{
 
 })
 
-router.delete('/:bookingId', async (req, res)=>{
-    const booking = await Booking.findByPk(req.params.bookingId)
- const spot = await Spot.findOne({
-    where:{
-        ownerId : req.user.id
-    }
- })
+router.delete('/:bookingId', requireAuth, async (req, res)=>{
+    const booking = await Booking.findByPk(req.params.bookingId, {
+        include: {
+            model:Spot
+        }
+    })
+//  const spot = await Spot.findOne({
+//     where:{
+//         ownerId : req.user.id
+//     }
+//  })
+
     if(!booking){
-        res.status(404).json(
+       return res.status(404).json(
             {
                 "message": "Booking couldn't be found"
               }
         )
     }
-console.log(spot)
-    if(!(req.user.id ===booking.userId  || req.user.id === spot)
+console.log(booking.Spot.ownerId)
+    if(!(req.user.id ===booking.userId  || req.user.id === booking.Spot.ownerId)
         ){
             return res.status(403).json({
             "message": "Forbidden"
