@@ -57,12 +57,15 @@ router.put('/:bookingId', requireAuth, async (req, res)=>{
 
     const booking = await Booking.findByPk(req.params.bookingId)
 
-    const allBookings = await Booking.findAll({
-        where:{
-            id : req.params.bookingId
-        }
+    const allBookings = await Booking.findAll(
+        // {
+        // where:{
+        //     id : req.params.bookingId
+        // }
 
-    })
+    // }
+    )
+
     const list = [];
 
     allBookings.forEach(booking =>{
@@ -80,6 +83,18 @@ router.put('/:bookingId', requireAuth, async (req, res)=>{
         })
     }
     let hasConflict = false;
+
+
+    if(new Date(booking.startDate).getTime()<new Date().getTime()){
+        // if(newStartDate.getTime() <now.getTime()
+        // //  || newEndDate.getTime()<now.getTime
+        //  ){
+            hasConflict=true;
+            return res.status(403).json({
+                "message": "Past bookings can't be modified"
+              })
+        // }
+    }
 
     list.forEach(booking =>{
 
@@ -103,12 +118,14 @@ router.put('/:bookingId', requireAuth, async (req, res)=>{
 
         const now = new Date();
 
-        if(newStartDate.getTime() <now.getTime() || newEndDate.getTime()<now.getTime){
-            hasConflict=true;
-            return res.status(403).json({
-                "message": "Past bookings can't be modified"
-              })
-        }
+        // if(newStartDate.getTime() <now.getTime()
+        // //  || newEndDate.getTime()<now.getTime
+        //  ){
+        //     hasConflict=true;
+        //     return res.status(403).json({
+        //         "message": "Past bookings can't be modified"
+        //       })
+        // }
         if((newStartDate.getTime() >= startDateTaken.getTime() && newStartDate.getTime()<endDateTaken.getTime())|| (newEndDate.getTime() > startDateTaken.getTime() && newEndDate.getTime()<=endDateTaken.getTime())||(newStartDate.getTime()<=startDateTaken.getTime() && newEndDate.getTime()>=endDateTaken.getTime())){
 
             hasConflict=true;
@@ -134,7 +151,7 @@ router.put('/:bookingId', requireAuth, async (req, res)=>{
 
         return res.status(403).json(
             {
-                "message": "Booking must belong to the current user"
+                "message": "Forbidden"
             }
         )
 
@@ -177,25 +194,30 @@ router.delete('/:bookingId', async (req, res)=>{
         )
     }
 console.log(spot)
-    if(req.user.id !==booking.userId
-        &&
-        req.user.id !== spot.ownerId
+    if(!(req.user.id ===booking.userId  || req.user.id === spot)
         ){
-        // console.log(booking.spot.ownerId)
-        return res.status(404).json({
-            "message": "Booking must belong to the current user or the Spot must belong to the current user"
+            return res.status(403).json({
+            "message": "Forbidden"
         })
-    }
+        }
+    // if(!(req.user.id !== booking.userId && res.user.id === spot.ownerId)|| !(req.user.id === booking.userId && res.user.id !== spot.ownerId))
+
+
+        // console.log(booking.spot.ownerId)
+
+
+
+
 
     const currentDate = new Date().getTime();
     const newStartDate = new Date(booking.startDate).getTime()
 
     if(newStartDate <= currentDate){
         return res.status(403).json({
-            "message":"Bookings that ahve been started can't be deleted"
+            "message":"Bookings that have been started can't be deleted"
         })
     }
-    // await booking.destroy()
+    await booking.destroy()
     res.json(
         {
             "message": "Successfully deleted"
