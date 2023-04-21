@@ -124,7 +124,7 @@ router.post('/:reviewId/images', async (req, res)=>{
 
 
     })
-    res.status(201).json(
+    return res.status(201).json(
        { id: newImage.id,
         url: newImage.url}
     )
