@@ -16,14 +16,11 @@ router.delete('/:imageId', requireAuth, async (req, res)=>{
 
     // const spotId = imageSpot.spotId
 
-    const spot = await Spot.findByPk(imageSpot.spotId)
+    // const spot = await Spot.findByPk(imageSpot.spotId)
     const user = req.user.id;
     console.log(user)
 
-    if(spot.ownerId!== user){
-        // console.log(spot.ownerId, user)
-        return res.status(403).json({"message":"Spot must belong to the current user"})
-    }
+
 
     if(!imageSpot){
         return res.status(404).json(
@@ -32,7 +29,18 @@ router.delete('/:imageId', requireAuth, async (req, res)=>{
               }
         )
     }
+    const spot = await Spot.findByPk(imageSpot.spotId)
+    if(imageSpot.spotId !== spot.id){
+        return res.status(404).json({
+            "message": "Spot Image couldn't be found"
+        })
+    }
 
+
+if(spot.ownerId!== user){
+        // console.log(spot.ownerId, user)
+        return res.status(403).json({"message":"Forbidden"})
+    }
     // if()
     await imageSpot.destroy();
 

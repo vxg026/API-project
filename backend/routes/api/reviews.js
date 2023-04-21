@@ -11,6 +11,17 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
+const validateCreateReview = [
+    check('review')
+    .exists({ checkFalsy: true })
+    .withMessage('Review is required'),
+    check('stars')
+    .exists({ checkFalsy: true })
+    // .isNumeric({checkFalsy: true})
+    .isInt({min: 1, max: 5})
+    .withMessage('Stars must be an integer from 1 to 5'),
+    handleValidationErrors
+  ]
 
 router.get( '/current', requireAuth, async (req, res)=>{
     const userId = req.user.id;
@@ -92,18 +103,21 @@ router.post('/:reviewId/images', async (req, res)=>{
     }
     if(!userReview ){
         return res.status(403).json({
-            message:"Review must belong to the current user"
+            message:"Forbidden"
         })
     }
+    console.log(images.length)
     if(images.length>=10){
-        res.status(403).json({
+        return res.status(403).json({
             "message": "Maximum number of images for this resource was reached"
         })
         //error max images
     }
+
     const newImage = await ReviewImage.create({
         url,
-        
+        reviewId
+
 
     })
     res.status(201).json(
@@ -111,7 +125,7 @@ router.post('/:reviewId/images', async (req, res)=>{
     )
 })
 
-router.put('/:reviewId', requireAuth, async (req, res)=>{
+router.put('/:reviewId', requireAuth, validateCreateReview,  async (req, res)=>{
     //make sure we have authorization and authentication
     //make sure we select the correct review that we want to edit
     const reviewId = req.params.reviewId
@@ -125,7 +139,7 @@ router.put('/:reviewId', requireAuth, async (req, res)=>{
 
     if(req.user.id !== updateReview.userId){
         return res.status(403).json({
-            "message": "Review must belong to the current user"
+            "message": "Forbidden"
         })
     }
 
@@ -137,6 +151,25 @@ router.put('/:reviewId', requireAuth, async (req, res)=>{
 
     await updateReview.save()
     res.status(200).json(updateReview)
+})
+
+router.delete('/:reviewId', async (req, res)=>{
+    const review = await Review.findByPk(req.params.reviewId)
+
+    if(!review){
+        return res.status(404).json({
+            "message":"Review couldn't be found"
+        })
+    }
+    if(review.userId !==req.user.id){
+        return res.status(403).json({
+            "message":"Forbidden"
+        })
+    }
+    await review.destroy();
+    return res.json({
+        "message":"Successfully deleted"
+    })
 })
 
 module.exports = router;

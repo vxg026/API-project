@@ -11,18 +11,10 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
-router.delete('/:imageId', async (req, res)=>{
+router.delete('/:imageId', requireAuth, async (req, res)=>{
     const imageReview = await ReviewImage.findByPk(req.params.imageId)
 
-    const review = await Review.findByPk(imageReview.reviewId)
 
-    const user = req.user.id
-
-    if(review.userId !== user){
-        return res.status(403).json({
-            "message": "Review must belong to the current user"
-        })
-    }
 
     if(!imageReview){
         return res.status(404).json(
@@ -31,6 +23,21 @@ router.delete('/:imageId', async (req, res)=>{
               }
         )
     }
+const review = await Review.findByPk(imageReview.reviewId)
+console.log(review)
+    const user = req.user.id
+console.log(review.userId)
+    if(req.user.id !== review.userId){
+        return res.status(403).json({
+            "message": "Forbidden"
+        })
+    }
+    // if(req.user.id !== review.userId){
+    //     return res.status(403).json({
+    //         "message": "Forbidden"
+    //     })
+    // }
+
     await imageReview.destroy();
     return res.status(200).json({
         "message": "Successfully deleted"
