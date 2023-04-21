@@ -315,7 +315,8 @@ router.get('/:spotId', async (req, res)=>{
             },
             include:[
                 {
-                    model: SpotImage
+                    model: SpotImage,
+                    attributes: ["id", "url", "preview"]
                 },
                 {
                     model: Review
