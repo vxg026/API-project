@@ -57,3 +57,8 @@ module.exports = {
     }, {});
   }
   }
+
+  // down: (queryInterface, Sequelize) => {
+
+  //   return queryInterface.bulkDelete(options, null, { truncate: true, cascade: true, restartIdentity: true });
+  //  }
