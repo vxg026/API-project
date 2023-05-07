@@ -37,8 +37,9 @@ export const deleteASpot = (spotId)=>async(dispatch)=>{
     })
     console.log("dedlete thunk****", response)
     if(response.ok){
-        // dispatch(deleteSpot(spotId))
+        dispatch(deleteSpot(spotId))
     }
+
 }
 
 export const allSpotsThunk = () => async dispatch =>{
@@ -114,8 +115,8 @@ export const getSpot = (spotId)=>async(dispatch)=>{
     }
 
 }
-const initialState = {allSpots:{}, currentSpot:{}};//hmmnot sure
-
+const initialState = {allSpots:{}};//hmmnot sure
+// , currentSpot:{}
 const spotsReducer = (state=initialState, action)=>{
     let newState;
 
@@ -124,21 +125,21 @@ const spotsReducer = (state=initialState, action)=>{
             newState={...state, allSpots:{}}
             // console.log("action=>", action)
             action.spots.forEach(spot=>{
-                newState[spot.id] = spot
+                newState.allSpots[spot.id] = spot
             })
 // console.log("newState=>",newState)
             return newState
 
         }
         case GET_SPOT:{
-            console.log("action=>", action)
-            return {...state, [action.spot.id]: action.spot}
+            return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot } };
         }
         case EDIT_SPOT:{
-            return {...state, [action.spot.id]: action.spot}
+            return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot } };
         }
         case GET_USER_SPOT:{
-            newState = {...state, allSpots:{...state.allSpots}, currentSpot:{...state.currentSpot}}
+            newState = {...state, allSpots:{...state.allSpots}}
+            // , currentSpot:{...state.currentSpot}
             // console.log("new state for curr uuser reducer=>", newState)
             console.log("spots curr", action.spots.Spots)
             action.spots.Spots.forEach(spot=>{
@@ -149,8 +150,9 @@ const spotsReducer = (state=initialState, action)=>{
 
         }
         case DELETE_SPOT:{
-            newState={...state};
-            delete newState[action.spotId]
+            newState = {...state, allSpots:{...state.allSpots}}
+            delete newState.allSpots[action.spotId]
+            return newState
         }
         default:
             return state;
