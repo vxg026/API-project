@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, Fragment } from "react";
 import {getCurrentUserSpots} from '../../store/spots'
+import SpotIndexItem from './SpotIndexItem'
+
+
 const  GetCurrentSpots= ()=>{
     const dispatch = useDispatch()
         const spotObj = useSelector(state=> state.spots.allSpots)
@@ -14,9 +17,11 @@ console.log("spotList -------", spotList)
 
 return (<>
 {spotList.length>0 && spotList.map(spot=>(
-<>
-{}
-</>
+<Fragment key={spot.id}>
+<h1>curr</h1>
+{spot.name}
+<SpotIndexItem spot={spot} />
+</Fragment>
     ))}
 </>
 )

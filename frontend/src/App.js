@@ -27,6 +27,7 @@ function App() {
         <Route  path="/spots/current" component={GetCurrentSpots}/>
           <Route  path="/spots/:spotId/edit" component={EditSpotForm}/>
         <Route  path="/spots/:spotId" component={SpotShow}/>
+      
 
 
       </Switch>}
