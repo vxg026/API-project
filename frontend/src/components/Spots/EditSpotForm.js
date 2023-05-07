@@ -9,6 +9,9 @@ const EditSpotForm =()=>{
     const dispatch = useDispatch()
     const {spotId} = useParams();
     const spot = useSelector(state=>state.spots[spotId])
+    // const spot = useSelector(state=>console.log("state!======", state))
+
+    // console.log("edit spot ", spot)
 
     useEffect(()=>{
         dispatch(getSpot(spotId))
