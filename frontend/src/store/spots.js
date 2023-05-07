@@ -24,6 +24,22 @@ const currentUserSpots = (spots)=>({
     spots
 })
 
+const deleteSpot = (spotId) => ({
+    type: DELETE_SPOT,
+    spotId
+})
+
+export const deleteASpot = (spotId)=>async(dispatch)=>{
+
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+
+        "method": "DELETE"
+    })
+    console.log("dedlete thunk****", response)
+    if(response.ok){
+        // dispatch(deleteSpot(spotId))
+    }
+}
 
 export const allSpotsThunk = () => async dispatch =>{
     const response = await csrfFetch('/api/spots',)
@@ -130,7 +146,11 @@ const spotsReducer = (state=initialState, action)=>{
             })
             console.log("getuser Spot reducer=>", newState)
             return newState
-        
+
+        }
+        case DELETE_SPOT:{
+            newState={...state};
+            delete newState[action.spotId]
         }
         default:
             return state;
