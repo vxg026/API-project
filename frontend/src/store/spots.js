@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 const GET_ALL_SPOTS = 'spots/getallspots'
 const GET_SPOT = 'spots/GET_SPOT'
-const GET_USER_SPOT = 'spots/GET_USER_SPOT'
+const GET_CURRENT_USER_SPOTS = 'spots/GET_CURRENT_USER_SPOTS'
 const EDIT_SPOT = 'spots/editSpot'
 const DELETE_SPOT = 'spots/deleteSpot'
 
@@ -20,7 +20,7 @@ const editSpot = (spot)=>({
     spot
 })
 const currentUserSpots = (spots)=>({
-    type: GET_USER_SPOT,
+    type: GET_CURRENT_USER_SPOTS,
     spots
 })
 
@@ -115,7 +115,7 @@ export const getSpot = (spotId)=>async(dispatch)=>{
     }
 
 }
-const initialState = {allSpots:{}};//hmmnot sure
+const initialState = {allSpots:{}, currentUserSpots:{}};//hmmnot sure
 // , currentSpot:{}
 const spotsReducer = (state=initialState, action)=>{
     let newState;
@@ -135,22 +135,24 @@ const spotsReducer = (state=initialState, action)=>{
             return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot } };
         }
         case EDIT_SPOT:{
-            return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot } };
+            return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot }, currentUserSpots:{...state.currentUserSpots, [action.spot.id]: action.spot} };
         }
-        case GET_USER_SPOT:{
-            newState = {...state, allSpots:{...state.allSpots}}
+        case GET_CURRENT_USER_SPOTS:{
+            newState = {...state, allSpots:{...state.allSpots}, currentUserSpots:{...state.currentUserSpots}}
             // , currentSpot:{...state.currentSpot}
             // console.log("new state for curr uuser reducer=>", newState)
             console.log("spots curr", action.spots.Spots)
             action.spots.Spots.forEach(spot=>{
                 newState.allSpots[spot.id] = spot
+                newState.currentUserSpots[spot.id] = spot
             })
             console.log("getuser Spot reducer=>", newState)
             return newState
 
         }
         case DELETE_SPOT:{
-            newState = {...state, allSpots:{...state.allSpots}}
+            newState = {...state, allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots} }
+            delete newState.currentUserSpots[action.spotId]
             delete newState.allSpots[action.spotId]
             return newState
         }

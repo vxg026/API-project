@@ -39,7 +39,7 @@ const SpotForm = ({ spot, formType }) => {
             if (data.errors) {
                 return setErrors(data.errors)
             }
-            // history.push(`/spots/${data.id}`)
+            history.push(`/spots/${data.id}`)
         }
 
         if (formType === "Update Spot") {
