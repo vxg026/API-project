@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import CreateSpotForm from './CreateSpotForm'
-import {createSpot, updateSpot} from '../../store/spots'
+import { createSpot, updateSpot } from '../../store/spots'
 // import { createSpot, updateSpot } from '../store/reports';
-    const SpotForm = ({ spot, formType }) => {
+const SpotForm = ({ spot, formType }) => {
     const dispatch = useDispatch()
 
     const history = useHistory()
@@ -32,25 +32,25 @@ import {createSpot, updateSpot} from '../../store/spots'
 
         setErrors({})
 
-        const newSpot = {...spot, country, address, city, state, lat, lng, description, name, price, url}
-        if(formType==="Create Spot"){
+        const newSpot = { ...spot, country, address, city, state, lat, lng, description, name, price, url }
+        if (formType === "Create Spot") {
             const data = await dispatch(createSpot(newSpot))
-console.log("data in spotform", data)
-            if(data.errors){
+            console.log("data in spotform", data)
+            if (data.errors) {
                 return setErrors(data.errors)
             }
             history.push(`/spots/${data.id}`)
         }
 
-        if(formType ==="Update Spot"){
+        if (formType === "Update Spot") {
 
             const data = await dispatch(updateSpot(newSpot))
-            if(data.errors){
-            return setErrors(data.errors)
+            if (data.errors) {
+                return setErrors(data.errors)
+            }
+            history.push(`/spots/${data.id}`)
+            return;
         }
-        history.push(`/spots/${data.id}`)
-        return;
-    }
     }
 
     return (
@@ -61,15 +61,15 @@ console.log("data in spotform", data)
             <label>
                 Country:
                 <input type="text"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}/>
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)} />
             </label>
             <label>
                 Address:
                 <input
                     type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
                 />
             </label>
             {/* <div className="errors">{errors.improvement}</div> */}
@@ -77,8 +77,8 @@ console.log("data in spotform", data)
                 City:
                 <input
                     type="text"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
                 />
             </label>
             <label>
@@ -86,7 +86,7 @@ console.log("data in spotform", data)
                 <input
                     type="text"
                     value={state}
-                onChange={(e) => setState(e.target.value)}
+                    onChange={(e) => setState(e.target.value)}
                 />
 
             </label>
@@ -97,7 +97,7 @@ console.log("data in spotform", data)
                 <input
                     type="text"
                     value={lat}
-                onChange={(e) => setLat(e.target.value)}
+                    onChange={(e) => setLat(e.target.value)}
                 />
 
             </label>
@@ -106,7 +106,7 @@ console.log("data in spotform", data)
                 <input
                     type="text"
                     value={lng}
-                onChange={(e) => setLng(e.target.value)}
+                    onChange={(e) => setLng(e.target.value)}
                 />
 
             </label>
@@ -116,7 +116,7 @@ console.log("data in spotform", data)
                 <input
                     type="text"
                     value={name}
-                onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
                 />
 
             </label>
@@ -125,7 +125,7 @@ console.log("data in spotform", data)
                 <input
                     type="text"
                     value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                    onChange={(e) => setDescription(e.target.value)}
                 />
 
             </label>
@@ -134,23 +134,23 @@ console.log("data in spotform", data)
                 <input
                     type="text"
                     value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                    onChange={(e) => setPrice(e.target.value)}
                 />
 
             </label>
             <label>
                 PreviewImageUrl
                 <input type="url"
-                value={previewImageUrl}
-                onChange={(e) => setPreviewImageUrl(e.target.value)}/>
+                    value={previewImageUrl}
+                    onChange={(e) => setPreviewImageUrl(e.target.value)} />
 
             </label>
 
             <label>
                 ImageUrl
                 <input formAction="image" type="url"
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}/>
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)} />
             </label>
             <button type="submit">{formType}</button>
         </form>
