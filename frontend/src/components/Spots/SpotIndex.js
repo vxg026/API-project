@@ -7,7 +7,7 @@ import { allSpotsThunk } from '../../store/spots'
 export default function GetAllSpots() {
     const dispatch = useDispatch()
 
-    const spotsObj = useSelector(state => state.spots)
+    const spotsObj = useSelector(state => state.spots.allSpots)
     // console.log("spots=>", spotsObj)
     const spotsList = Object.values(spotsObj)
     // console.log("spotsList=>", spotsList)

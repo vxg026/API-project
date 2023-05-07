@@ -4,14 +4,16 @@ import { deleteASpot } from '../../store/spots';
 
 
 const SpotIndexItem = ({spot})=>{
-    console.log("spotindexitem")
+
+    // console.log("spotindexitem")
     const dispatch = useDispatch();
-console.log("spot=====>", spot)
+// console.log("spot=====>", spot)
 // const spotList = Object.values(spot)
 // console.log("spotList ====>", spotList)
     const handleDelete=(e)=>{
         e.preventDefault();
         dispatch(deleteASpot(spot.id))
+        // history.push('/spots/current')
     }
 
     return(

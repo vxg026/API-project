@@ -11,7 +11,7 @@ const SpotShow = ()=>{
 
 console.log("spotshow id=>", spotId)
 
-    const spot = useSelector(state=>state.spots[spotId])
+    const spot = useSelector(state=>state.spots.allSpots[spotId])
 
 console.log("spotshow state=>", spot)
 
