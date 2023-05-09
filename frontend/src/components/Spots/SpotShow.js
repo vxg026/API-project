@@ -3,8 +3,9 @@ import {getSpot} from '../../store/spots'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import OpenModalButton from '../OpenModalButton'
-import CreateReview from '../Reviews/CreateReview'
+import CreateReviewForm from '../Reviews/CreateReview'
 import ReviewShow from '../Reviews/ReviewShow'
+import { useModal } from '../../context/Modal'
 
 const SpotShow = ()=>{
     const dispatch = useDispatch()
@@ -24,11 +25,13 @@ const SpotShow = ()=>{
 return(
     <section>
         <ReviewShow spotId={spotId}/>
-        <OpenModalButton
+        <CreateReviewForm spotId={spotId}/>
+        {/* <OpenModalButton
     buttonText="My Button Text"
-    modalComponent={<CreateReview spotId={spotId}/>}
-    
-/>
+    modalComponent={<CreateReview spotId={spotId}/>
+}
+/> */}
+<> </>
     </section>
 )
 }
