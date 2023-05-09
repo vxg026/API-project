@@ -10,6 +10,9 @@ import SpotShow from "./components/Spots/SpotShow";
 import CreateSpotForm from "./components/Spots/CreateSpotForm";
 import EditSpotForm from './components/Spots/EditSpotForm'
 import GetCurrentSpots from "./components/Spots/CurrentUserSpots.js";
+import GetCurrentReviews from "./components/Reviews/CurrentUserReviews";
+import CreateReviewForm from "./components/Reviews/CreateReview";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -22,13 +25,14 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && <Switch>
+
         <Route exact path="/" component={GetAllSpots} />
         <Route  path="/spots/new" component={CreateSpotForm}/>
         <Route  path="/spots/current" component={GetCurrentSpots}/>
           <Route  path="/spots/:spotId/edit" component={EditSpotForm}/>
         <Route  path="/spots/:spotId" component={SpotShow}/>
-      
-
+        <Route path="/reviews/current" component={GetCurrentReviews}/>
+        <Route path="/spots/:spotId/reviews" component={CreateReviewForm}/>
 
       </Switch>}
 

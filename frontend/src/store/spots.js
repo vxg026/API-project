@@ -35,7 +35,7 @@ export const deleteASpot = (spotId)=>async(dispatch)=>{
 
         "method": "DELETE"
     })
-    console.log("dedlete thunk****", response)
+    // console.log("dedlete thunk****", response)
     if(response.ok){
         dispatch(deleteSpot(spotId))
     }
@@ -94,7 +94,7 @@ export const updateSpot = (spot)=>async(dispatch)=>{
     if(response.status===200){
         const data = await response.json()
         dispatch(editSpot(data))
-        console.log("data thunk", data)
+        // console.log("data thunk", data)
         return data
 
       }
@@ -107,7 +107,7 @@ export const updateSpot = (spot)=>async(dispatch)=>{
 
 export const getSpot = (spotId)=>async(dispatch)=>{
     const response = await csrfFetch(`/api/spots/${spotId}`)
-    console.log("getSpot thunk spts store", response)
+    // console.log("getSpot thunk spts store", response)
     if(response.ok){
         const data = await response.json()
         dispatch(getSpotAction(data))
