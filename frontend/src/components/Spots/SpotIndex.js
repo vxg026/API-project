@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { allSpotsThunk } from '../../store/spots'
+import { Link, NavLink } from 'react-router-dom/cjs/react-router-dom.min'
 
 
 
@@ -23,7 +24,7 @@ export default function GetAllSpots() {
                     <img src={spot.previewImage}/>
                     <p className="spots">{spot.city}</p>
                     <p className="spots">{spot.state}</p>
-
+                    <Link to={`spots/${spot.id}`}>{spot.name}</Link>
                 </div>
             ))}
         </>)
