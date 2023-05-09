@@ -16,16 +16,24 @@ const SpotShow = ()=>{
 
     const spot = useSelector(state=>state.spots.allSpots[spotId])
 
-// console.log("spotshow state=>", spot)
+console.log("spotshow state=>", spot)
 
     useEffect(()=>{
         dispatch(getSpot(spotId))
     }, [dispatch, spotId])
-
+if(!spot) return null
 return(
     <section>
+        <h2>{spot.name}</h2>
+        <div>
+            <h5>{spot.city}</h5>
+            <h5>{spot.state}</h5>
+            <h5>{spot.country}</h5>
+        </div>
+
         <ReviewShow spotId={spotId}/>
         <CreateReviewForm spotId={spotId}/>
+        {/* <h1>{spot.name}</h1> */}
         {/* <OpenModalButton
     buttonText="My Button Text"
     modalComponent={<CreateReview spotId={spotId}/>
