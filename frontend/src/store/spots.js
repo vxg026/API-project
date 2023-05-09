@@ -71,7 +71,7 @@ export const createSpot = (spot)=> async(dispatch)=>{
         )
     })
     if(response.ok){
-        const data = await response.jsonO()
+        const data = await response.json()
         dispatch(getSpotAction(data))
         return data
     }

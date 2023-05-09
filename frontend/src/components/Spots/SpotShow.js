@@ -26,9 +26,8 @@ return(
     <section>
         <h2>{spot.name}</h2>
         <div>
-            <h5>{spot.city}</h5>
-            <h5>{spot.state}</h5>
-            <h5>{spot.country}</h5>
+            <h5>{spot.city}, {spot.state}, {spot.country}</h5>
+            <h5>{spot.description}</h5>
         </div>
 
         <ReviewShow spotId={spotId}/>
