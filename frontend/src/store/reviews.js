@@ -101,7 +101,7 @@ const reviewsReducer = (state = initialState, action)=>{
         case CREATE_REVIEW:{
 
             console.log("action reviewjf", action.review)
-            return { ...state, allReviews: { ...state.allReviews, [action.review]: action.review } };
+            return { ...state, allReviews: { ...state.allReviews, [action.review.id]: action.review } };
 
             // newState={...state, allReviews:{...state.allReviews, [action.review]}}
 

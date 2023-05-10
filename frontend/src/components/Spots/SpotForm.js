@@ -20,7 +20,13 @@ const SpotForm = ({ spot, formType }) => {
     const [name, setName] = useState(spot?.name)
     const [price, setPrice] = useState(spot?.price)
     const [preview, setPreview] = useState(spot?.url)
-    const [url, setUrl] = useState(spot?.url)
+    // const [previewImage, setPreviewUmage]= useState(spot?.previewImage)
+    const [url1, setUrl1] = useState(spot?.SpotImages?.url1)
+    const [url2, setUrl2] = useState(spot?.SpotImages?.url2)
+    const [url3, setUrl3] = useState(spot?.SpotImages?.url3)
+    const [url4, setUrl4] = useState(spot?.SpotImages?.url4)
+    const [url5, setUrl5] = useState(spot?.SpotImages?.url5)
+
     // const [url, setUrl] = useState(spot?.url)
     const [errors, setErrors] = useState({});
 
@@ -29,17 +35,34 @@ const SpotForm = ({ spot, formType }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         setErrors({})
+        const newSpot = { ...spot,
+            country,
+            address,
+            city,
+            state,
+            lat,
+            lng,
+            description,
+            name,
+            price,
+           SpotImages:[
+            {preview:true, url:url1},
+            {preview:false, url:url2},
+            {preview:false, url:url3},
+            {preview:false, url:url4},
+            {preview:false, url:url5},
+           ]
+         }
 
-        const newSpot = { ...spot, country, address, city, state, lat, lng, description, name, price, url, preview }
         if (formType === "Create Spot") {
-            const data = await dispatch(createSpot(newSpot))
-            console.log("data in spotform", data)
-            if (data.errors) {
-                return setErrors(data.errors)
+            const spotInfo = await dispatch(createSpot(newSpot))
+
+            console.log("data in spotform", spotInfo)
+            if (spotInfo.errors) {
+                return setErrors(spotInfo.errors)
             }
-            history.push(`/spots/${data.id}`)
+            history.push(`/spots/${spotInfo.id}`)
         }
 
         if (formType === "Update Spot") {
@@ -138,19 +161,37 @@ const SpotForm = ({ spot, formType }) => {
                 />
 
             </label>
-            <label>
-                PreviewImageUrl
-                <input type="url"
-                    value={preview}
-                    onChange={(e) => setPreview(e.target.value)} />
 
-            </label>
 
             <label>
                 ImageUrl
                 <input formAction="image" type="url"
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)} />
+                    value={url1}
+                    onChange={(e) => setUrl1(e.target.value)} />
+            </label>
+            <label>
+                ImageUrl
+                <input formAction="image" type="url"
+                    value={url2}
+                    onChange={(e) => setUrl2(e.target.value)} />
+            </label>
+            <label>
+                ImageUrl
+                <input formAction="image" type="url"
+                    value={url3}
+                    onChange={(e) => setUrl3(e.target.value)} />
+            </label>
+            <label>
+                ImageUrl
+                <input formAction="image" type="url"
+                    value={url4}
+                    onChange={(e) => setUrl4(e.target.value)} />
+            </label>
+            <label>
+                ImageUrl
+                <input formAction="image" type="url"
+                    value={url5}
+                    onChange={(e) => setUrl5(e.target.value)} />
             </label>
             <button type="submit">{formType}</button>
         </form>

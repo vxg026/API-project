@@ -11,7 +11,7 @@ export default function GetAllSpots() {
     const spotsObj = useSelector(state => state.spots.allSpots)
     // console.log("spots=>", spotsObj)
     const spotsList = Object.values(spotsObj)
-    // console.log("spotsList=>", spotsList)
+    console.log("spotsList=>", spotsList)
     useEffect(() => {
         dispatch(allSpotsThunk())
     }, [dispatch])

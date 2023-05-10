@@ -4,7 +4,12 @@ const GET_SPOT = 'spots/GET_SPOT'
 const GET_CURRENT_USER_SPOTS = 'spots/GET_CURRENT_USER_SPOTS'
 const EDIT_SPOT = 'spots/editSpot'
 const DELETE_SPOT = 'spots/deleteSpot'
+const CREAT_IMAGE = 'spots/createImage'
 
+const createImageAction = spotId =>({
+    type: CREAT_IMAGE,
+    spotId
+})
 
 const getAllSpotsAction = spots => ({
     type: GET_ALL_SPOTS,
@@ -70,31 +75,37 @@ export const createSpot = (spot)=> async(dispatch)=>{
           spot
         )
     })
-    if(response.ok){
+    try{
+            if(response.ok){
         const data = await response.json()
         dispatch(getSpotAction(data))
-        dispatch(createImage(response))
+        console.log("spottss in createspot thhk ", spot)
+        // if(!spot.SpotImage) return;
+        spot.spotImages.forEach(image=>{
+             dispatch(createImage(data.id, image))
+        })
+        // dispatch(createImage(response))
+        console.log("data in creatspot thunk", data)
         return data
     }
-else{
+    }
 
+catch{
     const data = await response.json()
     return data
-}
-
-
-}
-export const createImage = (spot)=> async(dispatch)=>{
-    const response = await csrfFetch(`/api/spots/${spot.id}/images`,{
+}}
+export const createImage = (spotId, image)=> async(dispatch)=>{
+    const response = await csrfFetch(`/api/spots/${spotId}/images`,{
         "method":"POST",
         "headers": { 'Content-Type': 'application/json'},
         "body": JSON.stringify(
-          spot.url
+   {       url:image.url,
+          preview:image.preview}
         )
     })
     if(response.ok){
         const data = await response.json()
-        dispatch(getSpotAction(data))
+        dispatch(createImageAction(data))
         return data
     }
 else{
@@ -177,6 +188,12 @@ const spotsReducer = (state=initialState, action)=>{
             delete newState.allSpots[action.spotId]
             return newState
         }
+        case CREAT_IMAGE:{
+            newState={...state, allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots}}
+            newState.allSpots.spotImages.forEach(spot=>spot[action.spotId])
+
+        }
+
         default:
             return state;
     }
