@@ -2,7 +2,8 @@ import { csrfFetch } from "./csrf";
 const GET_ALL_CURR_REVIEWS = 'reviews/getallreviews'
 const CREATE_REVIEW = 'reviews/CREATE_REVIEW'
 const GET_SPOT_REVIEWS = 'reviews/GET_SPOT_REVIEWS'
-
+const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
+const CLEAR_REVIEWS = 'reviews/CLEAR'
 
 const getSpotReviewsAction = (reviews)=>({
     type: GET_SPOT_REVIEWS,
@@ -17,6 +18,24 @@ const createReviewAction = review =>({
     type: CREATE_REVIEW,
     review
 })
+
+const deleteReviewAction = (reviewId) =>({
+    type: DELETE_REVIEW,
+    reviewId
+})
+
+export const clearReviews = ()=>({
+    type: CLEAR_REVIEWS
+})
+export const deleteAReview = (reviewId) => async(dispatch)=>{
+    const response = await csrfFetch(`/api/reviews/${reviewId}`,{
+        "method": "DELETE"
+    })
+    if(response.ok){
+        dispatch(deleteReviewAction(reviewId))
+        return
+    }
+}
 
 export const getSpotReviewsThunk = (spotId)=> async dispatch=>{
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`)
@@ -76,6 +95,9 @@ const reviewsReducer = (state = initialState, action)=>{
             })
             return newState
         }
+        case CLEAR_REVIEWS:
+            return {...state, allReviews:{}}
+
         case CREATE_REVIEW:{
 
             console.log("action reviewjf", action.review)
@@ -86,12 +108,18 @@ const reviewsReducer = (state = initialState, action)=>{
             // newState = {...state, allReviews:{...state.allReviews}, currentUserReviews:{...state.currentUserReviews}}
         }
         case GET_SPOT_REVIEWS:{
-            newState = {...state, allReviews:{...state.allReviews}}
+            newState = {...state, allReviews:{}}
             action.reviews.forEach(review=>{
                 newState.allReviews[review.id]= review
             })
             return newState
         }
+        case DELETE_REVIEW:
+            newState = {...state, allReviews:{...state.allReviews}, currentUserReviews:{...state.currentUserReviews}}
+            delete newState.allReviews[action.reviewId]
+            delete newState.currentUserReviews[action.reviewId]
+            return newState
+
         default: return state;
     }
 }
