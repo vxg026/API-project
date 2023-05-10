@@ -73,6 +73,7 @@ export const createSpot = (spot)=> async(dispatch)=>{
     if(response.ok){
         const data = await response.json()
         dispatch(getSpotAction(data))
+        dispatch(createImage(response))
         return data
     }
 else{
@@ -81,6 +82,26 @@ else{
     return data
 }
 
+
+}
+export const createImage = (spot)=> async(dispatch)=>{
+    const response = await csrfFetch(`/api/spots/${spot.id}/images`,{
+        "method":"POST",
+        "headers": { 'Content-Type': 'application/json'},
+        "body": JSON.stringify(
+          spot.url
+        )
+    })
+    if(response.ok){
+        const data = await response.json()
+        dispatch(getSpotAction(data))
+        return data
+    }
+else{
+
+    const data = await response.json()
+    return data
+}
 
 }
 

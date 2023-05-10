@@ -15,13 +15,19 @@ const SpotShow = ()=>{
 // console.log("spotshow id=>", spotId)
 
     const spot = useSelector(state=>state.spots.allSpots[spotId])
+    // const stateObj = useSelector(state=>state)
+    // console.log("STATEOBJECTINCURR===>", stateObj.reviews.allReviews)
+
 
 console.log("spotshow state=>", spot)
 
     useEffect(()=>{
         dispatch(getSpot(spotId))
     }, [dispatch, spotId])
+
 if(!spot) return null
+// if(!stateObj) return null
+
 return(
     <section>
         <h2>{spot.name}</h2>
@@ -30,16 +36,21 @@ return(
             <h5>{spot.description}</h5>
         </div>
 
-        <ReviewShow spotId={spotId}/>
-        <CreateReviewForm spotId={spotId}/>
+    <ReviewShow spotId={spotId}/>
+    <CreateReviewForm spotId={spotId}/>
+
+<> </>
+    </section>
+)
+}
+export default SpotShow;
+
+
+
+
         {/* <h1>{spot.name}</h1> */}
         {/* <OpenModalButton
     buttonText="My Button Text"
     modalComponent={<CreateReview spotId={spotId}/>
 }
 /> */}
-<> </>
-    </section>
-)
-}
-export default SpotShow;

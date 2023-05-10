@@ -7,9 +7,11 @@ import SpotIndexItem from './SpotIndexItem'
 const GetCurrentSpots = () => {
     const dispatch = useDispatch()
     const spotObj = useSelector(state => state.spots.currentUserSpots)
+
+
     // console.log("currspotobj", spotObj)
     const spotList = Object.values(spotObj)
-    console.log("spotList -------", spotList)
+    // console.log("spotList -------", spotList)
 
     useEffect(() => {
         dispatch(getCurrentUserSpots());
