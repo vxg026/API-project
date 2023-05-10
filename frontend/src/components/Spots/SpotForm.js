@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import CreateSpotForm from './CreateSpotForm'
 import { createSpot, updateSpot } from '../../store/spots'
 // import { createSpot, updateSpot } from '../store/reports';
 const SpotForm = ({ spot, formType }) => {
     const dispatch = useDispatch()
+
+    const user = useSelector(state=> state.session.user)
 
     const history = useHistory()
 
@@ -56,7 +58,7 @@ const SpotForm = ({ spot, formType }) => {
          }
 
         if (formType === "Create Spot") {
-            const spotInfo = await dispatch(createSpot(newSpot))
+            const spotInfo = await dispatch(createSpot(newSpot, user))
 
             console.log("data in spotform", spotInfo)
             if (spotInfo.errors) {
@@ -87,7 +89,9 @@ const SpotForm = ({ spot, formType }) => {
                     value={country}
                     onChange={(e) => setCountry(e.target.value)} />
             </label>
+            <p className="errors">{errors.country}</p>
             <label>
+
                 Address:
                 <input
                     type="text"
@@ -95,6 +99,7 @@ const SpotForm = ({ spot, formType }) => {
                     onChange={(e) => setAddress(e.target.value)}
                 />
             </label>
+            <p className="errors">{errors.address}</p>
             {/* <div className="errors">{errors.improvement}</div> */}
             <label>
                 City:
@@ -104,6 +109,7 @@ const SpotForm = ({ spot, formType }) => {
                     onChange={(e) => setCity(e.target.value)}
                 />
             </label>
+            <p className="errors">{errors.city}</p>
             <label>
                 State:
                 <input
@@ -113,7 +119,7 @@ const SpotForm = ({ spot, formType }) => {
                 />
 
             </label>
-
+            <p className="errors">{errors.state}</p>
 
             <label>
                 Lat:
@@ -124,6 +130,7 @@ const SpotForm = ({ spot, formType }) => {
                 />
 
             </label>
+            <p className="errors">{errors.lat}</p>
             <label>
                 Lng:
                 <input
@@ -133,7 +140,7 @@ const SpotForm = ({ spot, formType }) => {
                 />
 
             </label>
-
+            <p className="errors">{errors.lng}</p>
             <label>
                 Name:
                 <input
@@ -143,6 +150,7 @@ const SpotForm = ({ spot, formType }) => {
                 />
 
             </label>
+            <p className="errors">{errors.name}</p>
             <label>
                 Description:
                 <textarea
@@ -152,6 +160,7 @@ const SpotForm = ({ spot, formType }) => {
                 />
 
             </label>
+            <p className="errors">{errors.description}</p>
             <label>
                 Price:
                 <input
@@ -161,7 +170,7 @@ const SpotForm = ({ spot, formType }) => {
                 />
 
             </label>
-
+            <p className="errors">{errors.price}</p>
 
             <label>
                 ImageUrl
@@ -169,6 +178,7 @@ const SpotForm = ({ spot, formType }) => {
                     value={url1}
                     onChange={(e) => setUrl1(e.target.value)} />
             </label>
+            
             <label>
                 ImageUrl
                 <input formAction="image" type="url"

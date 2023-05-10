@@ -67,35 +67,42 @@ export const getCurrentUserSpots = ()=> async dispatch=>{
     }
 }
 
-export const createSpot = (spot)=> async(dispatch)=>{
-    const response = await csrfFetch(`/api/spots`, {
-        "method":"POST",
-        "headers": { 'Content-Type': 'application/json'},
-        "body": JSON.stringify(
-          spot
-        )
-    })
+export const createSpot = (spot, user)=> async(dispatch)=>{
     try{
-            if(response.ok){
-        const data = await response.json()
-        dispatch(getSpotAction(data))
-        console.log("spottss in createspot thhk ", spot)
-        // if(!spot.SpotImage) return;
-        spot.spotImages.forEach(image=>{
-             dispatch(createImage(data.id, image))
+        const response = await csrfFetch(`/api/spots`, {
+            "method":"POST",
+            "headers": { 'Content-Type': 'application/json'},
+            "body": JSON.stringify(
+              spot
+            )
         })
+            // if(response.ok){
+        const data = await response.json()
+        data.numReviews=0
+        data.avgStarRating=0
+        data.SpotImages=[]
+        data.Owner=user
+        dispatch(createImage(data, spot.SpotImages))
+        console.log("spottss in createspot thhk ", spot)
+
+
+        // if(!spot.SpotImage) return;
+        // spot.spotImages.forEach(image=>{
+        //      dispatch(createImage(data.id, image))
+        // })
         // dispatch(createImage(response))
-        console.log("data in creatspot thunk", data)
+        // console.log("data in creatspot thunk", data)
         return data
     }
-    }
 
-catch{
-    const data = await response.json()
+
+catch(e){
+    const data = await e.json()
     return data
 }}
-export const createImage = (spotId, image)=> async(dispatch)=>{
-    const response = await csrfFetch(`/api/spots/${spotId}/images`,{
+export const createImage = (spot, imageArray)=> async(dispatch)=>{
+    for(let image of imageArray){
+           const response = await csrfFetch(`/api/spots/${spot.id}/images`,{
         "method":"POST",
         "headers": { 'Content-Type': 'application/json'},
         "body": JSON.stringify(
@@ -103,16 +110,11 @@ export const createImage = (spotId, image)=> async(dispatch)=>{
           preview:image.preview}
         )
     })
-    if(response.ok){
-        const data = await response.json()
-        dispatch(createImageAction(data))
-        return data
-    }
-else{
-
     const data = await response.json()
-    return data
-}
+    spot.SpotImages.push(data)
+
+    }
+    dispatch(getSpotAction(spot))
 
 }
 
@@ -147,7 +149,7 @@ export const getSpot = (spotId)=>async(dispatch)=>{
     }
 
 }
-const initialState = {allSpots:{}, currentUserSpots:{}};//hmmnot sure
+const initialState = {allSpots:{}, singleSpot:{}, currentUserSpots:{}};//hmmnot sure
 // , currentSpot:{}
 const spotsReducer = (state=initialState, action)=>{
     let newState;
@@ -164,7 +166,7 @@ const spotsReducer = (state=initialState, action)=>{
 
         }
         case GET_SPOT:{
-            return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot } };
+            return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot },  singleSpot: action.spot}
         }
         case EDIT_SPOT:{
             return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot }, currentUserSpots:{...state.currentUserSpots, [action.spot.id]: action.spot} };
