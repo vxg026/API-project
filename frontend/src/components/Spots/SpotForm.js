@@ -10,18 +10,18 @@ const SpotForm = ({ spot, formType }) => {
     const history = useHistory()
 
 
-    const [country, setCountry] = useState(spot?.country ?? "")//spot country it it exists
-    const [address, setAddress] = useState(spot?.address ?? "")
-    const [city, setCity] = useState(spot?.city ?? "")
-    const [state, setState] = useState(spot?.state ?? "")
-    const [lat, setLat] = useState(spot?.lat ?? "")
-    const [lng, setLng] = useState(spot?.lng ?? "")
-    const [description, setDescription] = useState(spot?.description ?? "")
-    const [name, setName] = useState(spot?.name ?? "")
-    const [price, setPrice] = useState(spot?.price ?? "")
-    const [previewImageUrl, setPreviewImageUrl] = useState(spot?.url ?? "")
-    const [imageUrl, setImageUrl] = useState(spot?.url ?? "")
-    const [url, setUrl] = useState(spot?.url ?? "")
+    const [country, setCountry] = useState(spot?.country)//spot country it it exists
+    const [address, setAddress] = useState(spot?.address)
+    const [city, setCity] = useState(spot?.city)
+    const [state, setState] = useState(spot?.state)
+    const [lat, setLat] = useState(spot?.lat)
+    const [lng, setLng] = useState(spot?.lng)
+    const [description, setDescription] = useState(spot?.description)
+    const [name, setName] = useState(spot?.name)
+    const [price, setPrice] = useState(spot?.price)
+    const [preview, setPreview] = useState(spot?.url)
+    const [url, setUrl] = useState(spot?.url)
+    // const [url, setUrl] = useState(spot?.url)
     const [errors, setErrors] = useState({});
 
 
@@ -32,7 +32,7 @@ const SpotForm = ({ spot, formType }) => {
 
         setErrors({})
 
-        const newSpot = { ...spot, country, address, city, state, lat, lng, description, name, price, url }
+        const newSpot = { ...spot, country, address, city, state, lat, lng, description, name, price, url, preview }
         if (formType === "Create Spot") {
             const data = await dispatch(createSpot(newSpot))
             console.log("data in spotform", data)
@@ -122,7 +122,7 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <label>
                 Description:
-                <input
+                <textarea
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -141,16 +141,16 @@ const SpotForm = ({ spot, formType }) => {
             <label>
                 PreviewImageUrl
                 <input type="url"
-                    value={previewImageUrl}
-                    onChange={(e) => setPreviewImageUrl(e.target.value)} />
+                    value={preview}
+                    onChange={(e) => setPreview(e.target.value)} />
 
             </label>
 
             <label>
                 ImageUrl
                 <input formAction="image" type="url"
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)} />
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)} />
             </label>
             <button type="submit">{formType}</button>
         </form>

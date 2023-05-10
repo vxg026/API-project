@@ -29,17 +29,22 @@ return(
             <h5>{spot.city}, {spot.state}, {spot.country}</h5>
             <h5>{spot.description}</h5>
         </div>
+    <ReviewShow spotId={spotId}/>
+    <CreateReviewForm spotId={spotId}/>
 
-        <ReviewShow spotId={spotId}/>
-        <CreateReviewForm spotId={spotId}/>
+
+<> </>
+    </section>
+)
+}
+export default SpotShow;
+
+
+
+
         {/* <h1>{spot.name}</h1> */}
         {/* <OpenModalButton
     buttonText="My Button Text"
     modalComponent={<CreateReview spotId={spotId}/>
 }
 /> */}
-<> </>
-    </section>
-)
-}
-export default SpotShow;
