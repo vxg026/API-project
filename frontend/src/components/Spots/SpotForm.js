@@ -21,7 +21,7 @@ const SpotForm = ({ spot, formType }) => {
     const [description, setDescription] = useState(spot?.description)
     const [name, setName] = useState(spot?.name)
     const [price, setPrice] = useState(spot?.price)
-    const [preview, setPreview] = useState(spot?.url)
+    const [previewImage, setPreviewImage] = useState(spot?.url)
     // const [previewImage, setPreviewUmage]= useState(spot?.previewImage)
     const [url1, setUrl1] = useState(spot?.SpotImages?.url1)
     const [url2, setUrl2] = useState(spot?.SpotImages?.url2)

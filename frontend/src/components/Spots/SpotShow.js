@@ -2,10 +2,12 @@ import { Link, useParams } from 'react-router-dom'
 import {getSpot} from '../../store/spots'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import OpenModalButton from '../OpenModalButton'
+// import OpenModalButton from '../OpenModalButton'
 import CreateReviewForm from '../Reviews/CreateReview'
 import ReviewShow from '../Reviews/ReviewShow'
-import { useModal } from '../../context/Modal'
+import ReviewIndexItem from '../Reviews/ReviewIndexItem'
+import OpenModalButton from '../OpenModalButton'
+// import { useModal } from '../../context/Modal'
 
 const SpotShow = ()=>{
     const dispatch = useDispatch()
@@ -39,10 +41,18 @@ return(
 <h3>Hosted By {spot.Owner.firstName} {spot.Owner.lastName}</h3>
     <p>{spot.description}</p>
     <div>
-       <h4>${spot.price}</h4> 
+       <h4>${spot.price}</h4>
         </div>
     <ReviewShow spotId={spotId}/>
     <CreateReviewForm spotId={spotId}/>
+    {/* <OpenModalButton
+    buttonText="Delete Review"
+    modalComponent={
+            <ReviewIndexItem spot={spotId}/>
+
+        }
+    /> */}
+
 
 <> </>
     </section>

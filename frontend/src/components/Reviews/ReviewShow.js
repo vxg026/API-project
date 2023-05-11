@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { clearReviews, getSpotReviewsThunk } from "../../store/reviews";
 import ReviewIndexItem from '../Reviews/ReviewIndexItem'
-
+import OpenModalButton from '../OpenModalButton'
 const ReviewShow = ({spotId}) => {
     const dispatch = useDispatch()
     // const {spotId} = useParams()
@@ -31,7 +31,15 @@ const ReviewShow = ({spotId}) => {
 
             <h3>{review.review}</h3>
             <h3>{review.stars}</h3>
-<ReviewIndexItem review={review}/>
+{/* <ReviewIndexItem review={review}/> */}
+
+<OpenModalButton
+    buttonText="Delete Review"
+    modalComponent={
+            <ReviewIndexItem review={review}/>
+
+        }
+    />
             </div>
         ))}
         </>

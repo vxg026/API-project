@@ -4,12 +4,12 @@ const GET_SPOT = 'spots/GET_SPOT'
 const GET_CURRENT_USER_SPOTS = 'spots/GET_CURRENT_USER_SPOTS'
 const EDIT_SPOT = 'spots/editSpot'
 const DELETE_SPOT = 'spots/deleteSpot'
-const CREAT_IMAGE = 'spots/createImage'
+// const CREAT_IMAGE = 'spots/createImage'
 
-const createImageAction = spotId =>({
-    type: CREAT_IMAGE,
-    spotId
-})
+// const createImageAction = spotId =>({
+//     type: CREAT_IMAGE,
+//     spotId
+// })
 
 const getAllSpotsAction = spots => ({
     type: GET_ALL_SPOTS,
@@ -190,11 +190,11 @@ const spotsReducer = (state=initialState, action)=>{
             delete newState.allSpots[action.spotId]
             return newState
         }
-        case CREAT_IMAGE:{
-            newState={...state, allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots}}
-            newState.allSpots.spotImages.forEach(spot=>spot[action.spotId])
+        // case CREAT_IMAGE:{
+        //     newState={...state, allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots}}
+        //     newState.allSpots.spotImages.forEach(spot=>spot[action.spotId])
 
-        }
+        // }
 
         default:
             return state;
