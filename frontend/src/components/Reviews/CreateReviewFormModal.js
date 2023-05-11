@@ -31,25 +31,7 @@ const newReview = {...reviews, review, stars }
 
             return dispatch(createReviewThunk(newReview, spotId))
             .then(closeModal)
-            // .catch(async (data) =>{
-
-            //     if (data.errors) {
-            //                 return setErrors(data.errors)
-            //             }
-            // }
-            // )
         }
-
-        // if (formType === "Create Review") {
-        //     const data =  dispatch(createReviewThunk(newReview, spotId))
-        //     console.log("REVIEW FORM DATA---->", data)
-        //     if (data.errors) {
-        //         return setErrors(data.errors)
-        //     }
-
-        //     history.push(`/spots/${data.id}`)
-
-        // }
 
 
     }

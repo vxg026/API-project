@@ -37,7 +37,10 @@ return(
             <h5>{spot.city}, {spot.state}, {spot.country}</h5>
 
         </div>
+        <div>
+
         {spot.SpotImages.map(image => (<img src={`${image.url}`}/>))}
+        </div>
 <h3>Hosted By {spot.Owner.firstName} {spot.Owner.lastName}</h3>
     <p>{spot.description}</p>
     <div>

@@ -7,7 +7,7 @@ const CreateReviewForm = ({spotId})=>{
     return(
         <>
 <OpenModalButton
-    buttonText="My Button Text"
+    buttonText="Write A Review!"
     modalComponent={
 
         <ReviewForm
