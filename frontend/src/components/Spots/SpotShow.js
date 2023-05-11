@@ -27,7 +27,7 @@ console.log("spotshow state=>", spot)
 
 if(!spot) return null
 // if(!stateObj) return null
-
+if(!spot.SpotImages) return;
 return(
     <section>
         <h2>{spot.name}</h2>
@@ -35,6 +35,8 @@ return(
             <h5>{spot.city}, {spot.state}, {spot.country}</h5>
             <h5>{spot.description}</h5>
         </div>
+        {spot.SpotImages.map(image => (<img src={`${image.url}`}/>))}
+
 
     <ReviewShow spotId={spotId}/>
     <CreateReviewForm spotId={spotId}/>
