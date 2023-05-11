@@ -11,7 +11,7 @@ const GetCurrentSpots = () => {
 
     // console.log("currspotobj", spotObj)
     const spotList = Object.values(spotObj)
-    // console.log("spotList -------", spotList)
+    console.log("spotList -------", spotList)
 
     useEffect(() => {
         dispatch(getCurrentUserSpots());
@@ -20,8 +20,11 @@ const GetCurrentSpots = () => {
     return (<>
         {spotList.length > 0 && spotList.map(spot => (
             <Fragment key={spot.id}>
-                <h1>curr</h1>
-                {spot.name}
+                <h1>{spot.name}</h1>
+                <img src={spot.previewImage}/>
+                <h4>{spot.city}, {spot.state}</h4>
+                <h4>${spot.price} night</h4>
+                <h4>{spot.avgRating}</h4>
                 <SpotIndexItem spot={spot} />
             </Fragment>
         ))}

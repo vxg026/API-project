@@ -16,8 +16,8 @@ const SpotForm = ({ spot, formType }) => {
     const [address, setAddress] = useState(spot?.address)
     const [city, setCity] = useState(spot?.city)
     const [state, setState] = useState(spot?.state)
-    const [lat, setLat] = useState(spot?.lat)
-    const [lng, setLng] = useState(spot?.lng)
+    const [lat, setLat] = useState(1)
+    const [lng, setLng] = useState(1)
     const [description, setDescription] = useState(spot?.description)
     const [name, setName] = useState(spot?.name)
     const [price, setPrice] = useState(spot?.price)
@@ -121,7 +121,7 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <p className="errors">{errors.state}</p>
 
-            <label>
+            {/* <label>
                 Lat:
                 <input
                     type="text"
@@ -140,7 +140,7 @@ const SpotForm = ({ spot, formType }) => {
                 />
 
             </label>
-            <p className="errors">{errors.lng}</p>
+            <p className="errors">{errors.lng}</p> */}
             <label>
                 Name:
                 <input
@@ -178,7 +178,7 @@ const SpotForm = ({ spot, formType }) => {
                     value={url1}
                     onChange={(e) => setUrl1(e.target.value)} />
             </label>
-            
+
             <label>
                 ImageUrl
                 <input formAction="image" type="url"

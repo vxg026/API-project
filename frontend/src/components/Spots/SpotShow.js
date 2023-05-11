@@ -33,11 +33,14 @@ return(
         <h2>{spot.name}</h2>
         <div>
             <h5>{spot.city}, {spot.state}, {spot.country}</h5>
-            <h5>{spot.description}</h5>
+
         </div>
         {spot.SpotImages.map(image => (<img src={`${image.url}`}/>))}
-
-
+<h3>Hosted By {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+    <p>{spot.description}</p>
+    <div>
+       <h4>${spot.price}</h4> 
+        </div>
     <ReviewShow spotId={spotId}/>
     <CreateReviewForm spotId={spotId}/>
 
