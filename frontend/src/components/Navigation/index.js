@@ -9,6 +9,13 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
   return (
+    <>
+    <div className="navigation">
+    <div className="titleandlogo">
+
+    <img className="logo" alt="logo" src="https://i.imgur.com/Q8y7IUU.png"/>
+    <h1 className="logo-name">  campbnb </h1>
+    </div>
     <ul>
       <li>
         <NavLink exact to="/">Home</NavLink>
@@ -19,6 +26,8 @@ function Navigation({ isLoaded }){
         </li>
       )}
     </ul>
+    </div>
+    </>
   );
 }
 

@@ -9,3 +9,11 @@
 .newSpotLink{
     text-decoration: none;
 }
+.home{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.home images{
+width:20%;
+}

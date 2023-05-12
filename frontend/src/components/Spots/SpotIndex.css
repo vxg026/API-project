@@ -1,0 +1,55 @@
+.home-images-card{
+    width:22%;
+    height: 16rem;
+    /* border:solid 2px red; */
+    margin-bottom:1rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    }
+    .index-city-staate-reviews{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%; /* Set width to 100% */
+    border: yellow 2px solid;
+    align-items: flex-start;
+    margin-top: 0.05rem;
+}
+.home {
+    /* border: solid 2px blue; */
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-right:1rem;
+    padding-left: 1rem;
+}
+.spot-index-img{
+    width:100%;
+    height:12rem;
+}
+.image-in-home{
+    width:100%;
+    height: 10rem;
+    border: solid pink 1px;
+    border-radius: 10px;
+}
+.card-img-info-index{
+    display: flex;
+    flex-direction: column;
+    width:100%
+}
+
+.index-city-state{
+    display:flex;
+    flex-direction: row;
+    margin-top:0.05rem;
+}
+.fa-star{
+    color: grey;
+}
+.spots{
+    margin-top:0
+}
