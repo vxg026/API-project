@@ -23,7 +23,7 @@ const spot = spotsArr.find((spot)=>{
 if(!spot || spotsArr.length===0) return;
 
  const renderButton =
-    user.id !== spot.ownerId;
+    user?.id !== spot.ownerId;
 
 // const renderButton =(user.id !== spot.ownerId || (reviewSubmitted===false && user.id == spot.ownerId))
 

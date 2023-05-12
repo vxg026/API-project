@@ -33,14 +33,18 @@ const ReviewShow = ({ spotId }) => {
         }
     }, [dispatch, spotId])
 
-if (!spot || spotsArr.length === 0) return;
+if (!spot || spotsArr.length === 0) return null;
+// if(!user) return null;
     // console.log("spooooot", spot)
-    const reviewExists = reviewsList.find(review => review.userId == user.id)
-  const renderButton = user.id !== spot.ownerId
-    console.log("REVIEWS EXISTS         ", reviewExists)
-    console.log("reviewsLIST===>", reviewsList)
-    console.log("           USER            ", user.id)
-    reviewsList.forEach(review => console.log("reviewsuserid", review.userId))
+    const reviewExists = reviewsList.find(review => review.userId == user?.id)
+//   const renderButton = (user?.id !== spot.ownerId && user !==null)
+
+  const renderButton = user && user.id !== spot.ownerId;
+
+    // console.log("REVIEWS EXISTS         ", reviewExists)
+    // console.log("reviewsLIST===>", reviewsList)
+    // console.log("           USER            ", user?.id)
+    // reviewsList.forEach(review => console.log("reviewsuserid", review.userId))
 
 
     //review.userId!==user.id &&
@@ -68,7 +72,7 @@ if (!spot || spotsArr.length === 0) return;
 
 
                     {/* <ReviewIndexItem review={review}/> */}
-                    {review.userId === user.id &&
+                    {review.userId === user?.id &&
                         <OpenModalButton
                             buttonText="Delete Review"
                             modalComponent={
