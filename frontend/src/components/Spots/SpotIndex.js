@@ -19,13 +19,15 @@ export default function GetAllSpots() {
 
     return (
         <>
+        <div>
             {spotsList.map((spot) => (
-                <div key={spot.id}>
+                <div className="home images" key={spot.id}>
                     <img src={spot.previewImage}/>
                     <p className="spots">{spot.city}</p>
                     <p className="spots">{spot.state}</p>
                     <Link to={`spots/${spot.id}`}>{spot.name}</Link>
                 </div>
             ))}
+            </div>
         </>)
 }

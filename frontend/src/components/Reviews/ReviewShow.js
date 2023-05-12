@@ -61,14 +61,16 @@ if (!spot || spotsArr.length === 0) return null;
                renderButton && !reviewExists &&
                ( <CreateReviewForm spotId={spotId} />)
             }
+            {console.log("reviewslist----->>>>", reviewsList)}
 
             {reviewsList && reviewsList.map(review => (
 
-                <div key={review.id}>
+                <div key={review.id}id>
+                    <h3>{review.User.firstName}</h3>
+                    <h3>{review.createdAt}</h3>
+                    <h3>{review.review} review</h3>
 
-                    <h3>{review.review}</h3>
-
-                    <h3>{review.stars}</h3>
+                    <h3>{review.stars} stars</h3>
 
 
                     {/* <ReviewIndexItem review={review}/> */}

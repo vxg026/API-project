@@ -31,7 +31,7 @@ const SpotShow = () => {
     if (!spot.SpotImages) return null
     // if(!stateObj) return null
 
-
+console.log("spoooooot in shpotshow", spot)
     console.log(spot)
     return (
         <section>
@@ -44,10 +44,18 @@ const SpotShow = () => {
 
                 {spot.SpotImages.map(image => (<img src={`${image.url}`} />))}
             </div>
-            <h3>Hosted By {spot.Owner.firstName} {spot.Owner.lastName}</h3>
+            <h3>Hosted By {spot.Owner.firstName} {spot.Owner.lastName} </h3>
+
             <p>{spot.description}</p>
             <div>
-                <h4>${spot.price}</h4>
+                <div>
+
+                </div>
+                <h4>${spot.price} night <i className="fas fa-star"/>{spot.avgStarRating} #{spot.numReviews} reviews</h4>
+                <button>Reserve</button>
+            </div>
+            <div>
+                <h4></h4>
             </div>
             <ReviewShow spotId={spotId} />
             {/* <CreateReviewForm spotId={spotId}/> */}
