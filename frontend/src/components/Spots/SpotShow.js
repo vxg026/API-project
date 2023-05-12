@@ -7,6 +7,7 @@ import CreateReviewForm from '../Reviews/CreateReview'
 import ReviewShow from '../Reviews/ReviewShow'
 import ReviewIndexItem from '../Reviews/ReviewIndexItem'
 import OpenModalButton from '../OpenModalButton'
+import './SpotShow.css'
 // import { useModal } from '../../context/Modal'
 
 const SpotShow = () => {
@@ -34,7 +35,11 @@ const SpotShow = () => {
 console.log("spoooooot in shpotshow", spot)
     console.log(spot)
     return (
+
         <section>
+            <div>
+                <Link className="newSpotLink"to="/spots/new">Create a new spot!</Link>
+            </div>
             <h2>{spot.name}</h2>
             <div>
                 <h5>{spot.city}, {spot.state}, {spot.country}</h5>
@@ -45,18 +50,20 @@ console.log("spoooooot in shpotshow", spot)
                 {spot.SpotImages.map(image => (<img src={`${image.url}`} />))}
             </div>
             <h3>Hosted By {spot.Owner.firstName} {spot.Owner.lastName} </h3>
-
+              <div className="description">
             <p>{spot.description}</p>
+            </div>
             <div>
                 <div>
 
                 </div>
-                <h4>${spot.price} night <i className="fas fa-star"/>{spot.avgStarRating} #{spot.numReviews} reviews</h4>
+                <h4>${spot.price} night <i className="fas fa-star"/>{spot.avgStarRating?.toFixed(1)} #{spot.numReviews} reviews</h4>
                 <button>Reserve</button>
             </div>
             <div>
                 <h4></h4>
             </div>
+            <div className="reviews">
             <ReviewShow spotId={spotId} />
             {/* <CreateReviewForm spotId={spotId}/> */}
             {/* <OpenModalButton
@@ -65,7 +72,7 @@ console.log("spoooooot in shpotshow", spot)
             <ReviewIndexItem spot={spotId}/>
 
         }
-    /> */}
+    /> */}</div>
 
 
             <> </>

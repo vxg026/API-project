@@ -87,14 +87,14 @@ console.log("array=>", arr)
     return (
 
         <form onSubmit={handleReviewSubmit}>
-            <lable>
+            <label>
             <h2>How was your stay?</h2>
             <textarea
                 type="text"
                 value={review}
                 onChange={e => setReview(e.target.value)}
                 placeholder="Leave your review here" />
-            </lable>
+            </label>
         <p className="errors">{errors.review}</p>
         <div>
             {arr}

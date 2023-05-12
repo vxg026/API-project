@@ -1,0 +1,11 @@
+.reviews {
+    display:flex;
+    flex-direction: column-reverse;
+}
+
+.description{
+    border-bottom: solid 2px black;
+}
+.newSpotLink{
+    text-decoration: none;
+}

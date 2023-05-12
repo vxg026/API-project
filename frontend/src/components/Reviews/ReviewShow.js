@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { clearReviews, getSpotReviewsThunk } from "../../store/reviews";
 import ReviewIndexItem from '../Reviews/ReviewIndexItem'
 import OpenModalButton from '../OpenModalButton'
-
+import './ReviewShow.css'
 
 import CreateReviewForm from "./CreateReview";
 const ReviewShow = ({ spotId }) => {
@@ -57,22 +57,20 @@ if (!spot || spotsArr.length === 0) return null;
 
     return (
         <>
-            {
-               renderButton && !reviewExists &&
-               ( <CreateReviewForm spotId={spotId} />)
-            }
+
             {console.log("reviewslist----->>>>", reviewsList)}
 
             {reviewsList && reviewsList.map(review => (
 
-                <div key={review.id}id>
-                    <h3>{review.User.firstName}</h3>
-                    <h3>{review.createdAt}</h3>
+                <div className="review-container" key={review.id}id>
+                    <div className="review">
+                    <h3>{review.User?.firstName}</h3>
+                    <h3>{new Date(review.createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</h3>
                     <h3>{review.review} review</h3>
 
                     <h3>{review.stars} stars</h3>
 
-
+                    </div>
                     {/* <ReviewIndexItem review={review}/> */}
                     {review.userId === user?.id &&
                         <OpenModalButton
@@ -83,8 +81,14 @@ if (!spot || spotsArr.length === 0) return null;
                             }
                         />
                     }
+
                 </div>
             ))}
+  {
+               renderButton && !reviewExists &&
+               ( <CreateReviewForm spotId={spotId} />)
+            }
+
         </>
     )
 }
