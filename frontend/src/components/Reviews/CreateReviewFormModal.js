@@ -29,8 +29,17 @@ const newReview = {...reviews, review, stars }
 
         if (formType === "Create Review"){
 
-            return dispatch(createReviewThunk(newReview, spotId))
-            .then(closeModal)
+            const response = await dispatch(createReviewThunk(newReview, spotId));
+            if (response.errors) {
+                console.log("response errors===>", response.errors)
+              setErrors(response.errors);
+            } else {
+              closeModal();
+            }
+
+            // return dispatch(createReviewThunk(newReview, spotId))
+            // .then(closeModal)
+
         }
 
 
@@ -78,13 +87,15 @@ console.log("array=>", arr)
     return (
 
         <form onSubmit={handleReviewSubmit}>
+            <lable>
             <h2>How was your stay?</h2>
             <textarea
                 type="text"
                 value={review}
                 onChange={e => setReview(e.target.value)}
                 placeholder="Leave your review here" />
-
+            </lable>
+        <p className="errors">{errors.review}</p>
         <div>
             {arr}
         </div>

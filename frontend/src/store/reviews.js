@@ -52,6 +52,8 @@ export const getSpotReviewsThunk = (spotId)=> async dispatch=>{
 }
 
 export const createReviewThunk = (review, spotId)=> async dispatch=>{
+
+try{
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         "method":"POST",
         "headers": { 'Content-Type': 'application/json'},
@@ -59,15 +61,17 @@ export const createReviewThunk = (review, spotId)=> async dispatch=>{
           review
         )
     })
-    if(response.ok){
+    // if(response.ok){
         const data = await response.json()
         dispatch(createReviewAction(data))
         return data
-    }
-else{
-
-    const data = await response.json()
+    // }
+}
+// else{
+catch(e){
+    const data = await e.json()
     return data
+// }
 }
 }
 
