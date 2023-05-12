@@ -47,7 +47,7 @@ return(
        <h4>${spot.price}</h4>
         </div>
     <ReviewShow spotId={spotId}/>
-    <CreateReviewForm spotId={spotId}/>
+    {/* <CreateReviewForm spotId={spotId}/> */}
     {/* <OpenModalButton
     buttonText="Delete Review"
     modalComponent={
