@@ -1,6 +1,8 @@
 .hidden{display: none}
 
-
+.link-to-home{
+    text-decoration: none;
+}
 .titleandlogo{
     display: flex;
     /* border: red solid 2px; */
