@@ -21,8 +21,9 @@ const SpotShow = () => {
     // const stateObj = useSelector(state=>state)
     // console.log("STATEOBJECTINCURR===>", stateObj.reviews.allReviews)
 
-
-    console.log("spotshow state=>", spot)
+    // const user = useSelector(state=>state.session)
+    // console.log("userrrr in spot showwww =====>      =====>", user.user.id)
+    // console.log("spotshow state=>", spot)
 
     useEffect(() => {
         dispatch(getSpot(spotId))
@@ -57,12 +58,13 @@ console.log("spoooooot in shpotshow", spot)
                 <div>
 
                 </div>
-                <h4>${spot.price} night <i className="fas fa-star"/>{spot.avgStarRating?.toFixed(1)} #{spot.numReviews} reviews</h4>
+                <h4>${spot.price} night <i className="fas fa-star"/>{spot.numReviews?"·":""}{spot.avgStarRating?.toFixed(1)} #{(spot.numReviews ? spot.numReviews && spot.numReviews<=1 ? "review": "reviews": "New!")} </h4>
                 <button>Reserve</button>
             </div>
             <div>
                 <h4></h4>
             </div>
+            {/* {spot.numReviews==0 && spot?.ownerId!==user?.user?.id && <h2>Be the first to post a review!</h2>} */}
             <div className="reviews">
             <ReviewShow spotId={spotId} />
             {/* <CreateReviewForm spotId={spotId}/> */}

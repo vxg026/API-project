@@ -63,13 +63,13 @@ if (!spot || spotsArr.length === 0) return null;
         <>
 
             {console.log("reviewslist----->>>>", reviewsList)}
-
+            {/* {renderButton && !reviewsList && <h2>Be the first to post a review!</h2>} */}
             {reviewsList && reviewsList.map(review => (
 
                 <div className="review-container" key={review.id}id>
                     <div className="review">
                     <h3>{review.User?.firstName}</h3>
-                    <h3>{new Date(review.createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</h3>
+                    <h3>{new Date(review.createdAt).toLocaleDateString("en-US", { month: "long", year: "numeric" })}</h3>
                     <h3>{review.review} review</h3>
 
                     <h3>{review.stars} stars</h3>
@@ -90,7 +90,11 @@ if (!spot || spotsArr.length === 0) return null;
             ))}
   {
                renderButton && !reviewExists &&
-               ( <CreateReviewForm spotId={spotId} />)
+
+               (<>
+                 <CreateReviewForm spotId={spotId}/>
+               <h2>Be the first to post a review!</h2>
+               </>)
             }
 
         </>

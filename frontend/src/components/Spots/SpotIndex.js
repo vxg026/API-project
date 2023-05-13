@@ -32,8 +32,9 @@ export default function GetAllSpots() {
                                 <div className="index-city-state">
                                     <p className="spots">{spot.city} {spot.state}</p>
                                     {/* <p className="spots"></p> */}
+                                    {console.log("average star rating!======>", spot.avgRating)}
                                 </div>
-                                <p className="spots"><i className="fas fa-star"></i>{spot.avgStarRating?.toFixed(1)}</p>
+                                <p className="spots"><i className="fas fa-star"></i>{spot.avgRating ? spot.avgRating?.toFixed(1): "New!" }</p>
                             </div>
                             <div className="index-price">
                                 {spot.price}/night
