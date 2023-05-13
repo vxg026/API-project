@@ -31,3 +31,7 @@
         z-index: 9999; */
 
 }
+.navigation-button-create{
+    display:flex;
+    flex-direction:row;
+}

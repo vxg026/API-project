@@ -1,10 +1,17 @@
+.root{
+    border: red 2px solid;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+}
 .reviews {
     display:flex;
     flex-direction: column-reverse;
 }
 
 .description{
-    border-bottom: solid 2px black;
+    border-bottom: solid 2px rgb(176, 166, 166);
 }
 .newSpotLink{
     text-decoration: none;
@@ -16,4 +23,63 @@
 }
 .home images{
 width:20%;
+}
+.spotshow-name-city-state-country{
+    display:flex;
+    flex-direction: column;
+}
+.spotshow-images-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    height: 28rem;
+    width: 95%;
+    /* border: solid red 2px; */
+    justify-content: space-between;
+    gap: .5rem;
+
+}
+.spotshow-preview-image{
+    /* border: solid red 2px; */
+    width:53%;
+    height: 100%;
+
+}
+.spotshow-images{
+    /* border: rgb(59, 152, 170) solid 2px; */
+    width: 46%;
+    height:100%;
+    display:flex;
+    /* gap: .5rem; */
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 0.5rem;
+
+
+}
+.spotshow-preview-ima{
+    width: 100%;
+    height:100%;
+    border-radius: 25px 0 0 25px;
+}
+.spotshow-img {
+
+    /* border: rgb(98, 98, 169) solid 2px; */
+    height: 49%;
+    width: 48.5%;
+    /* width: 48%; */
+}
+.i1{
+
+}
+.i2{
+
+}
+.i3{
+    border-radius: 0 25px 0 0;
+}
+.i4{
+    border-radius: 0 0 25px 0;
 }

@@ -33,22 +33,35 @@ const SpotShow = () => {
     if (!spot.SpotImages) return null
     // if(!stateObj) return null
 
-console.log("spoooooot in shpotshow", spot)
-    console.log(spot)
+// console.log("spoooooot in shpotshow", spot)
+    // console.log(spot)
     return (
 
-        <section>
-            <div>
-                <Link className="newSpotLink"to="/spots/new">Create a new spot!</Link>
-            </div>
+        <section className="root">
+        
+            <div className="spotshow-name-city-state-country">
             <h2>{spot.name}</h2>
             <div>
                 <h5>{spot.city}, {spot.state}, {spot.country}</h5>
                 {/* <h2>{spot.numReviews}reviews</h2> */}
             </div>
-            <div>
+            </div>
+            <div className="spotshow-images-container">
 
-                {spot.SpotImages.map(image => (<img src={`${image.url}`} />))}
+                {/* {spot.SpotImages.map(image => (<img className="spotshow-image" src={`${image.url}`} />))} */}
+                <div className="spotshow-preview-image">
+                {spot.SpotImages[0] && <img className="spotshow-preview-ima" src={spot.SpotImages[0].url}/> }
+                </div>
+
+                <div className="spotshow-images">
+                {spot.SpotImages[1] && <img className="spotshow-img i1" src={spot.SpotImages[1].url}/> }
+                {spot.SpotImages[2] && <img className="spotshow-img i2" src={spot.SpotImages[2].url}/> }
+                {spot.SpotImages[3] && <img className="spotshow-img i3" src={spot.SpotImages[3].url}/> }
+                {spot.SpotImages[4] && <img className="spotshow-img i4" src={spot.SpotImages[4].url}/> }
+                </div>
+
+
+
             </div>
             <h3>Hosted By {spot.Owner.firstName} {spot.Owner.lastName} </h3>
               <div className="description">
@@ -82,13 +95,3 @@ console.log("spoooooot in shpotshow", spot)
     )
 }
 export default SpotShow;
-
-
-
-
-{/* <h1>{spot.name}</h1> */ }
-{/* <OpenModalButton
-    buttonText="My Button Text"
-    modalComponent={<CreateReview spotId={spotId}/>
-}
-/> */}

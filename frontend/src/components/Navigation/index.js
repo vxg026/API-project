@@ -20,16 +20,21 @@ function Navigation({ isLoaded }){
     <h1 className="logo-name">  campbnb </h1>
     </div>
     </Link>
-    <ul>
-      <li>
+    {/* <ul> */}
+      {/* <li>
         <NavLink exact to="/">Home</NavLink>
-      </li>
+      </li> */}
       {isLoaded && (
-        <li>
+        <div className="navigation-button-create">
+              <div>
+                <Link className="newSpotLink" to="/spots/new">Create a new spot!</Link>
+            </div>
+            <div>
           <ProfileButton user={sessionUser} />
-        </li>
+          </div>
+        </div>
       )}
-    </ul>
+    {/* </ul> */}
     </div>
     </>
   );

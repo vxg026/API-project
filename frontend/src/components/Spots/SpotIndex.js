@@ -21,29 +21,33 @@ export default function GetAllSpots() {
         <>
             <div className="home">
                 {spotsList.map((spot) => (
-                    <div className="home-images-card" key={spot.id}>
 
-                        <div className="spot-index-img">
-                            <img className="image-in-home" src={spot.previewImage} />
-                        </div>
+                    <div className="home-images-card tooltip" key={spot.id}>
+                        <Link to={`spots/${spot.id}`}>
+                            <span class="tooltiptext">{spot.name}</span>
+                            <div className="spot-index-img">
+                                <img className="image-in-home" src={spot.previewImage} />
+                            </div>
 
-                        <div className="card-img-info-index">
-                            <div className="index-city-staate-reviews">
-                                <div className="index-city-state">
-                                    <p className="spots">{spot.city} {spot.state}</p>
-                                    {/* <p className="spots"></p> */}
-                                    {console.log("average star rating!======>", spot.avgRating)}
+                            <div className="card-img-info-index">
+                                <div className="index-city-staate-reviews">
+                                    <div className="index-city-state">
+                                        <p className="spots">{spot.city} {spot.state}</p>
+                                        {/* <p className="spots"></p> */}
+                                        {console.log("average star rating!======>", spot.avgRating)}
+                                    </div>
+                                    <p className="spots"><i className="fas fa-star"></i>{spot.avgRating ? spot.avgRating?.toFixed(1) : "New!"}</p>
                                 </div>
-                                <p className="spots"><i className="fas fa-star"></i>{spot.avgRating ? spot.avgRating?.toFixed(1): "New!" }</p>
-                            </div>
-                            <div className="index-price">
-                                {spot.price}/night
-                            </div>
-                            <Link to={`spots/${spot.id}`}>{spot.name}</Link>
-                        </div>
+                                <div className="index-price">
+                                    {spot.price}/night
+                                </div>
 
+                            </div>
+                        </Link>
                     </div>
+
                 ))}
             </div>
+
         </>)
 }

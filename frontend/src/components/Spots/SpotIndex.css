@@ -1,14 +1,41 @@
 .home-images-card{
-    width:22%;
+    width:18rem;
     height: 16rem;
-    /* border:solid 2px red; */
+    border:solid 2px red;
     margin-bottom:1rem;
     display:flex;
     flex-direction: column;
     justify-content: flex-start;
+
     align-items: center;
 
     }
+    .tooltip {
+        position: relative;
+        display: inline-block;
+      }
+
+      .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: rgb(184, 166, 166);
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+
+        /* Position the tooltip */
+        /* position: absolute; */
+        position: absolute;
+        top: 10%; /* position tooltip below element */
+        left: 90%; /* center tooltip horizontally */
+        z-index: 1;
+        left: 50%;
+      }
+
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
+      }
     .index-city-staate-reviews{
     display: flex;
     flex-direction: row;
@@ -35,7 +62,9 @@
     height: 12rem;
     border: solid pink 1px;
     border-radius: 10px;
+    flex-wrap:wrap;
 }
+
 .card-img-info-index{
     display: flex;
     flex-direction: column;
