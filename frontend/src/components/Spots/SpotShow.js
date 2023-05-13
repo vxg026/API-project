@@ -38,9 +38,9 @@ const SpotShow = () => {
     return (
 
         <section className="root">
-        
+
             <div className="spotshow-name-city-state-country">
-            <h2>{spot.name}</h2>
+            <h2 className="spotshow-spot-name">{spot.name}</h2>
             <div>
                 <h5>{spot.city}, {spot.state}, {spot.country}</h5>
                 {/* <h2>{spot.numReviews}reviews</h2> */}
@@ -63,23 +63,46 @@ const SpotShow = () => {
 
 
             </div>
-            <h3>Hosted By {spot.Owner.firstName} {spot.Owner.lastName} </h3>
+
+            <div className="spotshow-container-3">
+                <div className="spotshow-onwerinfo">
+            <h3 className="spotshow-onwer-name">Hosted By {spot.Owner.firstName} {spot.Owner.lastName} </h3>
               <div className="description">
             <p>{spot.description}</p>
             </div>
-            <div>
-                <div>
+            </div>
 
+ <div className="spotshow-little-info">
+ <div className="spotshow-info">
+                <div className="spotshow-price-stars">
+
+               <h4 className="spotshow-price">${spot.price} /night</h4>
+                <h4 className="spotshow-rating">
+               <i className="fas fa-star"/>{spot.numReviews?"·":""}{spot.avgStarRating?.toFixed(1)} #{(spot.numReviews ? spot.numReviews && spot.numReviews<=1 ? "review": "reviews": "New!")} </h4>
                 </div>
-                <h4>${spot.price} night <i className="fas fa-star"/>{spot.numReviews?"·":""}{spot.avgStarRating?.toFixed(1)} #{(spot.numReviews ? spot.numReviews && spot.numReviews<=1 ? "review": "reviews": "New!")} </h4>
-                <button>Reserve</button>
+
+               <div className="button-container">
+               <button className="reserve-button">Reserve</button>
+          </div>
+           </div>
             </div>
-            <div>
-                <h4></h4>
+
             </div>
+
+
+            <div className="spotshow-container-four">
+
+                <h4><i className="fas fa-star"/>{spot.numReviews?"·":""}{spot.avgStarRating?.toFixed(1)} #{(spot.numReviews ? spot.numReviews && spot.numReviews<=1 ? "review": "reviews": "New!")} </h4>
+
+            </div>
+
             {/* {spot.numReviews==0 && spot?.ownerId!==user?.user?.id && <h2>Be the first to post a review!</h2>} */}
-            <div className="reviews">
+            <div className="spotshow-reviews">
+
             <ReviewShow spotId={spotId} />
+
+
+
             {/* <CreateReviewForm spotId={spotId}/> */}
             {/* <OpenModalButton
     buttonText="Delete Review"

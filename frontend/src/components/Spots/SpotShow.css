@@ -1,5 +1,5 @@
 .root{
-    border: red 2px solid;
+    /* border: red 2px solid; */
     display:flex;
     flex-direction: column;
     align-items:center;
@@ -10,9 +10,9 @@
     flex-direction: column-reverse;
 }
 
-.description{
+/* .description{
     border-bottom: solid 2px rgb(176, 166, 166);
-}
+} */
 .newSpotLink{
     text-decoration: none;
 }
@@ -24,9 +24,15 @@
 .home images{
 width:20%;
 }
+.spotshow-spot-name{
+font-family:sans-serif;
+margin-bottom:0;
+}
 .spotshow-name-city-state-country{
     display:flex;
     flex-direction: column;
+    border: 2px solid red;
+    width: 95%;
 }
 .spotshow-images-container{
     display: flex;
@@ -82,4 +88,66 @@ width:20%;
 }
 .i4{
     border-radius: 0 0 25px 0;
+}
+.spotshow-container-3{
+    /* border: solid 2px red; */
+    width:95%;
+    height: 17rem;
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 2px rgb(176, 166, 166);
+}
+.spotshow-onwerinfo{
+    /* border: 2px solid blueviolet; */
+    width:65%;
+}
+.spotshow-little-info{
+    /* border: 2px solid skyblue; */
+    width: 40%;
+    display:flex;
+    justify-content: end;
+}
+.spotshow-info{
+    display:flex;
+    flex-direction: column;
+    margin-top:.8rem;
+    padding-bottom:1rem;
+    border: 2px solid gray;
+    border-radius: 15px;
+    width: 80%;
+    height: 40%;
+    /* align-items: center; */
+}
+.button-container{
+    display:flex;
+    align-items: center;
+    /* border: 2px solid red; */
+    justify-content: center;
+}
+.reserve-button{
+    background-color: rgb(227, 44, 81);
+    color: white;
+    height: 2.5rem;
+    width:20rem;
+}
+.spotshow-price-stars{
+    display:flex;
+    justify-content: space-between;
+    margin-left:2rem;
+    margin-right: 2rem;
+}
+.spotshow-price{
+    font-family:sans-serif;
+}
+.spotshow-onwer-name{
+    font-size:larger;
+}
+.spotshow-container-four{
+    width:95%;
+    border:2px solid red;
+}
+.spotshow-reviews{
+    display:flex;
+    width: 95%;
+    border:2px solid red;
 }
