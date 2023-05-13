@@ -84,14 +84,6 @@ export const createSpot = (spot, user)=> async(dispatch)=>{
         data.Owner=user
         dispatch(createImage(data, spot.SpotImages))
         console.log("spottss in createspot thhk ", spot)
-
-
-        // if(!spot.SpotImage) return;
-        // spot.spotImages.forEach(image=>{
-        //      dispatch(createImage(data.id, image))
-        // })
-        // dispatch(createImage(response))
-        // console.log("data in creatspot thunk", data)
         return data
     }
 

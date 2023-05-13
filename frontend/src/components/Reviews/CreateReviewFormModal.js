@@ -13,7 +13,7 @@ const ReviewForm = ({reviews, spotId, disabled,formType}) => {
 
 
     const [review, setReview] = useState("")
-    const [stars, setStars] = useState(1)
+    const [stars, setStars] = useState(0)
     const [errors, setErrors] = useState({});
     const [activeRating, setActiveRating]=useState(stars)
 
@@ -97,7 +97,7 @@ console.log("array=>", arr)
             </label>
         <p className="errors">{errors.review}</p>
         <div>
-            {arr}
+            {arr} Stars
         </div>
 
             {/* {[1, 2, 3, 4, 5].map((i) => (
@@ -115,7 +115,7 @@ console.log("array=>", arr)
 />
                 // <i key={i} onClick={() => setStars(i)} className={i <= stars ? `fas fa-star` : `far fa-star`} />
             ))} */}
-            <button type="submit">Submit your Review</button>
+            <button type="submit" disabled={(review.length<10 || stars===-0)}>Submit your Review</button>
         </form>
     )
 }
