@@ -1,0 +1,82 @@
+
+.form-main-container{
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    /* gap:1rem; */
+    justify-content: center;
+    align-items: center;
+    width:50%;
+    margin-left: 25%;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.section1-form{
+    width:80%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgb(174, 167, 167);
+    display: flex;
+    flex-direction: column;
+    /* gap:1rem; */
+    justify-content: center;
+    align-items: center;
+
+    /* border:2px solid red; */
+}
+.section2-form{
+    width:80%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgb(174, 167, 167);
+    display: flex;
+    flex-direction: column;
+    /* gap:1rem; */
+    justify-content: center;
+    align-items: center;
+}
+.section3-form{
+    width:80%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgb(174, 167, 167);
+    display: flex;
+    flex-direction: column;
+    /* gap:1rem; */
+    justify-content: center;
+    align-items: center;
+}
+.section4-form{
+    width:80%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgb(174, 167, 167);
+    display: flex;
+    flex-direction: column;
+    /* gap:1rem; */
+    justify-content: center;
+    align-items: center;
+}
+.section5-form{
+    width:80%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgb(174, 167, 167);
+    display: flex;
+    flex-direction: column;
+    /* gap:1rem; */
+    justify-content: center;
+    align-items: center;
+}
+.h4{
+    margin-bottom: 1rem;
+}

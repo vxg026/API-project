@@ -141,7 +141,7 @@ export const getSpot = (spotId)=>async(dispatch)=>{
     }
 
 }
-const initialState = {allSpots:{}, singleSpot:{}, currentUserSpots:{}};//hmmnot sure
+const initialState = {allSpots:{}, singleSpot:{}};//hmmnot sure
 // , currentSpot:{}
 const spotsReducer = (state=initialState, action)=>{
     let newState;
@@ -149,11 +149,11 @@ const spotsReducer = (state=initialState, action)=>{
     switch(action.type){
         case GET_ALL_SPOTS:{
             newState={...state, allSpots:{}}
-            // console.log("action=>", action)
+
             action.spots.forEach(spot=>{
                 newState.allSpots[spot.id] = spot
             })
-// console.log("newState=>",newState)
+
             return newState
 
         }
@@ -161,7 +161,7 @@ const spotsReducer = (state=initialState, action)=>{
             return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot },  singleSpot: action.spot}
         }
         case EDIT_SPOT:{
-            return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot }, currentUserSpots:{...state.currentUserSpots, [action.spot.id]: action.spot} };
+            return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot } };
         }
         // case GET_CURRENT_USER_SPOTS:{
         //     newState={...state, allSpots:{}}
@@ -178,16 +178,12 @@ const spotsReducer = (state=initialState, action)=>{
 
         // }
         case DELETE_SPOT:{
-            newState = {...state, allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots} }
-            delete newState.currentUserSpots[action.spotId]
+            newState = {...state, allSpots:{...state.allSpots} }
+            // delete newState.currentUserSpots[action.spotId]
             delete newState.allSpots[action.spotId]
             return newState
         }
-        // case CREAT_IMAGE:{
-        //     newState={...state, allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots}}
-        //     newState.allSpots.spotImages.forEach(spot=>spot[action.spotId])
 
-        // }
 
         default:
             return state;

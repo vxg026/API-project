@@ -25,31 +25,39 @@ const GetCurrentSpots = () => {
     return (<>
     <div>
 
-        <h2>Manage your spots</h2>
+        <h2 className="managespot">Manage your spots</h2>
     </div>
 
 <div>
 
-
+<div className="home">
         {spotList.length > 0 && spotList.map(spot => (
             <Fragment key={spot.id}>
 
-<Link to={`/spots/${spot.id}`}>Spot</Link>
-                <div>
+{/* <Link to={`/spots/${spot.id}`}>Spot</Link> */}
 
-                 <h1>{spot.name}</h1>
-
-                 <div className="spot-index-img">
+<div className="home-images-card tooltip" key={spot.id}>
+                        <Link className="link-to-spot" to={`/spots/${spot.id}`}>
+                            <span class="tooltiptext">{spot.name}</span>
+                            <div className="spot-index-img">
                                 <img className="image-in-home" src={spot.previewImage} />
                             </div>
-                {/* <img src={spot.previewImage}/> */}
-                {/* <img src={spot.previ}/> */}
 
-                <h4>{spot.city}, {spot.state}</h4>
-                <h4>${spot.price} night</h4>
-                <h4>{spot.avgRating}</h4>
+                            <div className="card-img-info-index">
+                                <div className="index-city-staate-reviews">
+                                    <div className="index-city-state">
+                                        <p className="spots">{spot.city} {spot.state}</p>
+                                        {/* <p className="spots"></p> */}
+                                        {console.log("average star rating!======>", spot.avgRating)}
+                                    </div>
+                                    <p className="spots"><i className="fas fa-star"></i>{spot.avgRating ? spot.avgRating?.toFixed(1) : "New!"}</p>
+                                </div>
+                                <div className="index-price">
+                                   <h6 className="spotindex-price">{spot.price}</h6> <h6>/night</h6>
+                                </div>
 
-                </div>
+                            </div>
+                        </Link>
 
  <button>
                        <Link to={`/spots/${spot.id}/edit`}>Edit
@@ -65,9 +73,10 @@ const GetCurrentSpots = () => {
                     }
                 />
                 {/* <SpotIndexItem spot={spot} /> */}
-
+</div>
             </Fragment>
         ))}
+        </div>
         </div>
     </>
     )
