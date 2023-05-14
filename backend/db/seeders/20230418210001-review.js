@@ -62,7 +62,7 @@ module.exports = {
         },
         {
           spotId: 2,
-          userId: 2,
+          userId: 5,
           review: "This campground was perfect for our family vacation. There were plenty of activities for the kids and the nearby lake was great for swimming.",
           stars: 4
         },
@@ -76,7 +76,7 @@ module.exports = {
           spotId: 2,
           userId: 1,
           review: "We had a great time at this campground. The staff were friendly and accommodating. The only downside was that the nearby train tracks were a bit noisy.",
-          stars: 4
+          stars: 1
         },
         {
           spotId: 1,
@@ -104,7 +104,7 @@ module.exports = {
          {
            potId: 5,
            userId: 3,
-           review: "We loved the peacefulness of this campground. It was the perfect escape from the city. The campsite was spacious and private.", stars: 4
+           review: "We loved the peacefulness of this campground. It was the perfect escape from the city. The campsite was spacious and private.", stars: 2
          },
          {
            spotId: 5,
@@ -140,7 +140,7 @@ module.exports = {
            spotId: 9,
            userId: 3,
            review: "The views from this campground were incredible. We loved waking up to the sunrise over the mountains. The only downside was that the nearest town was a bit far.",
-           stars: 4
+           stars: 3
          },
          {
            spotId: 10,
@@ -152,7 +152,7 @@ module.exports = {
            spotId: 11,
            userId: 2,
            review: "nice hosts",
-           stars: 4
+           stars: 2
           },
           {
            spotId: 12,
@@ -244,7 +244,7 @@ module.exports = {
     options.tableName = 'Reviews';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      spotId: { [Op.in]: [1,2,3] }
+      userId: { [Op.in]: [1,2,3,4,5] }
     }, {});
   }
   }
