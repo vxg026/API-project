@@ -97,15 +97,17 @@ if (!spot || spotsArr.length === 0) return null;
 
                 </div>
             ))}
+{renderButton && reviewsList.length==0 &&
 
-
+<h4>Be the first to post a review!</h4>
+}
   {renderButton && !reviewExists &&
 
                (<>
 
                  <CreateReviewForm spotId={spotId}/>
 
-               <h4>Be the first to post a review!</h4>
+
                </>)
             }
 
