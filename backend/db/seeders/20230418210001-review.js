@@ -32,7 +32,7 @@ module.exports = {
         review: "This campground had amazing views and was perfect for stargazing at night. The bathrooms were clean and well-maintained.",
         stars: 5},
         {
-          potId: 1,
+          spotId: 1,
           userId: 3,
           review: "We loved the peacefulness of this campground. It was the perfect escape from the city. The campsite was spacious and private.", stars: 4
         },
@@ -102,7 +102,7 @@ module.exports = {
          review: "This campground had amazing views and was perfect for stargazing at night. The bathrooms were clean and well-maintained.",
          stars: 5},
          {
-           potId: 5,
+           spotId: 5,
            userId: 3,
            review: "We loved the peacefulness of this campground. It was the perfect escape from the city. The campsite was spacious and private.", stars: 2
          },
@@ -172,7 +172,7 @@ module.exports = {
            review: "This campground had amazing views and was perfect for stargazing at night. The bathrooms were clean and well-maintained.",
            stars: 5},
            {
-             potId: 14,
+             spotId: 14,
              userId: 3,
              review: "We loved the peacefulness of this campground. It was the perfect escape from the city. The campsite was spacious and private.", stars: 4
            },
