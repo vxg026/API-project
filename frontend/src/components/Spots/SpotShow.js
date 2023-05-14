@@ -29,6 +29,7 @@ const SpotShow = () => {
         dispatch(getSpot(spotId))
     }, [dispatch, spotId])
 
+    
     if (!spot) return null
     if (!spot.SpotImages) return null
     // if(!stateObj) return null
@@ -81,7 +82,7 @@ const SpotShow = () => {
 
                <div>
                 <h4 className="spotshow-rating">
-               <i className="fas fa-star"/>{spot.numReviews?"·":""}{spot.avgStarRating?.toFixed(1)} #{(spot.numReviews ? spot.numReviews && spot.numReviews<=1 ? "review": "reviews": "New!")} </h4>
+               <i className="fas fa-star"/>{spot.numReviews?"·":""}{spot.avgStarRating?.toFixed(1)} {spot.numReviews} #{(spot.numReviews ? spot.numReviews && spot.numReviews<=1 ? "review": "reviews": "New!")} </h4>
             </div>
                 </div>
 
@@ -96,7 +97,7 @@ const SpotShow = () => {
 
             <div className="spotshow-container-four">
 
-                <h4><i className="fas fa-star"/>{spot.numReviews?"·":""}{spot.avgStarRating?.toFixed(1)} #{(spot.numReviews ? spot.numReviews && spot.numReviews<=1 ? "review": "reviews": "New!")} </h4>
+                <h4><i className="fas fa-star"/>{spot.numReviews?"·":""}{spot.avgStarRating?.toFixed(1)} {spot.numReviews} #{(spot.numReviews ? spot.numReviews && spot.numReviews<=1 ? "review": "reviews": "New!")} </h4>
 
             </div>
 

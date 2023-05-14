@@ -41,7 +41,7 @@ if(!spot || spotsArr.length===0) return;
         {/* <ReviewForm disabled={false} spotId={spotId} user={user} review={newReview} ormType="Create Review"/> */}
 
 <OpenModalButton
-    buttonText="Write A Review!"
+    buttonText="Post your review!"
     modalComponent={
 
         <ReviewForm

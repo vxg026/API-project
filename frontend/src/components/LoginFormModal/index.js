@@ -28,6 +28,11 @@ function LoginFormModal() {
         }
       });
   };
+  const handleDemoUser= (e) =>{
+    e.preventDefault();
+    return dispatch(sessionActions.login({credential:"Demo-lition", password:"password"}))
+    .then(closeModal)
+  }
 
   return (
     <>
@@ -55,6 +60,7 @@ function LoginFormModal() {
           <p>{errors.credential}</p>
         )}
         <button type="submit" disabled={isDisabled}>Log In</button>
+        <button type="submit" onClick={handleDemoUser}>Demo User</button>
       </form>
     </>
   );

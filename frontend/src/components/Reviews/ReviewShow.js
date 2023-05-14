@@ -64,23 +64,32 @@ if (!spot || spotsArr.length === 0) return null;
 
             {console.log("reviewslist----->>>>", reviewsList)}
             {/* {renderButton && !reviewsList && <h2>Be the first to post a review!</h2>} */}
+            <div className="reviewshow-main-container">
             {reviewsList && reviewsList.map(review => (
 
                 <div className="review-container" key={review.id}id>
-                    <div className="review">
-                    <h3>{review.User?.firstName}</h3>
-                    <h3>{new Date(review.createdAt).toLocaleDateString("en-US", { month: "long", year: "numeric" })}</h3>
-                    <h3>{review.review} review</h3>
 
-                    <h3>{review.stars} stars</h3>
+                    <div className="review">
+                        <div className="review-show-user-name">
+                    <h3>{review.User?.firstName}</h3>
+                    </div>
+                    <div className="review-show-date">
+                    <h3>{new Date(review.createdAt).toLocaleDateString("en-US", { month: "long", year: "numeric" })}</h3>
+
+                    </div>
+                    <div  className="review-show-review">
+                    <h3>{review.review} review</h3>
+                    </div>
+                    {/* <h3>{review.stars} stars</h3> */}
 
                     </div>
                     {/* <ReviewIndexItem review={review}/> */}
                     {review.userId === user?.id &&
                         <OpenModalButton
+                        className="reviewshow-delete-button"
                             buttonText="Delete Review"
                             modalComponent={
-                                <ReviewIndexItem review={review} />
+                                <ReviewIndexItem review={review} spotId={spotId}/>
 
                             }
                         />
@@ -88,15 +97,19 @@ if (!spot || spotsArr.length === 0) return null;
 
                 </div>
             ))}
-  {
-               renderButton && !reviewExists &&
+
+
+  {renderButton && !reviewExists &&
 
                (<>
+
                  <CreateReviewForm spotId={spotId}/>
-               <h2>Be the first to post a review!</h2>
+
+               <h4>Be the first to post a review!</h4>
                </>)
             }
 
+</div>
         </>
     )
 }

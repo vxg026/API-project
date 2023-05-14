@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { createReviewThunk } from '../../store/reviews'
+import { getSpot } from '../../store/spots'
 import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { useModal } from '../../context/Modal'
@@ -28,13 +29,17 @@ const newReview = {...reviews, review, stars }
 
 
         if (formType === "Create Review"){
+            const response = await dispatch(createReviewThunk(newReview, spotId))
+            if(!response.errors){
+            dispatch(getSpot(spotId))
+            }
 
-            const response = await dispatch(createReviewThunk(newReview, spotId));
             if (response.errors) {
                 console.log("response errors===>", response.errors)
               setErrors(response.errors);
             } else {
-              closeModal();
+              closeModal()
+
             }
 
             // return dispatch(createReviewThunk(newReview, spotId))

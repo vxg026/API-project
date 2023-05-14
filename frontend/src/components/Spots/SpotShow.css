@@ -5,6 +5,7 @@
     align-items:center;
     justify-content:center;
 }
+
 .reviews {
     display:flex;
     flex-direction: column-reverse;
@@ -161,16 +162,26 @@ margin-top: 1rem;
 }
 .spotshow-container-four{
     width:95%;
-    border:2px solid red;
+    margin-top: 1rem;
+    margin-bottom:1rem;
+    /* border:2px solid red; */
 }
 .spotshow-reviews{
     display:flex;
     width: 95%;
-    border:2px solid red;
+    /* border:2px solid red; */
 }
 .spotshow-price-stars{
     display: flex;
     justify-content: space-between;
     /* border:2px solid red; */
     width: 80%;
+}
+.review{
+    /* border:2px solid red; */
+    margin-bottom: 1rem;
+
+}
+.reviewshow-delete-button{
+    border:2px solid red;
 }
