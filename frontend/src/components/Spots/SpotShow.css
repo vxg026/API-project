@@ -20,19 +20,29 @@
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
+    padding-top:1rem;
 }
 .home images{
 width:20%;
 }
 .spotshow-spot-name{
 font-family:sans-serif;
-margin-bottom:0;
+margin-bottom:1rem;
+margin-top: 1rem;
+/* border: 2px solid red; */
+}
+.spotshow-undertitle{
+    /* border:2px solid red; */
+    padding-bottom:1rem;
 }
 .spotshow-name-city-state-country{
     display:flex;
     flex-direction: column;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     width: 95%;
+    height: 5rem;
+    margin-left: .5rem;
+    margin-bottom: 1em;
 }
 .spotshow-images-container{
     display: flex;
@@ -92,7 +102,7 @@ margin-bottom:0;
 .spotshow-container-3{
     /* border: solid 2px red; */
     width:95%;
-    height: 17rem;
+    height: 15rem;
     display: flex;
     flex-direction: row;
     border-bottom: solid 2px rgb(176, 166, 166);
@@ -111,24 +121,31 @@ margin-bottom:0;
     display:flex;
     flex-direction: column;
     margin-top:.8rem;
-    padding-bottom:1rem;
+    padding-top:2rem;
+    /* padding-bottom:.5rem; */
     border: 2px solid gray;
     border-radius: 15px;
-    width: 80%;
-    height: 40%;
+    width: 100%;
+    height: 43%;
+    /* justify-content: center; */
+    align-items: center;
     /* align-items: center; */
 }
 .button-container{
+    padding-top: 1em;
     display:flex;
     align-items: center;
     /* border: 2px solid red; */
     justify-content: center;
+    width:80%;
 }
 .reserve-button{
+
     background-color: rgb(227, 44, 81);
     color: white;
-    height: 2.5rem;
-    width:20rem;
+    height: 2.6rem;
+    width:100%;
+    box-shadow: 5px 5px 10px gray;
 }
 .spotshow-price-stars{
     display:flex;
@@ -150,4 +167,10 @@ margin-bottom:0;
     display:flex;
     width: 95%;
     border:2px solid red;
+}
+.spotshow-price-stars{
+    display: flex;
+    justify-content: space-between;
+    /* border:2px solid red; */
+    width: 80%;
 }

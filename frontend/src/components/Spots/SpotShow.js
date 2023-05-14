@@ -42,7 +42,7 @@ const SpotShow = () => {
             <div className="spotshow-name-city-state-country">
             <h2 className="spotshow-spot-name">{spot.name}</h2>
             <div>
-                <h5>{spot.city}, {spot.state}, {spot.country}</h5>
+                <h5 className="spotshow-undertitle">{spot.city}, {spot.state}, {spot.country}</h5>
                 {/* <h2>{spot.numReviews}reviews</h2> */}
             </div>
             </div>
@@ -75,10 +75,14 @@ const SpotShow = () => {
  <div className="spotshow-little-info">
  <div className="spotshow-info">
                 <div className="spotshow-price-stars">
-
+                <div>
                <h4 className="spotshow-price">${spot.price} /night</h4>
+               </div>
+
+               <div>
                 <h4 className="spotshow-rating">
                <i className="fas fa-star"/>{spot.numReviews?"·":""}{spot.avgStarRating?.toFixed(1)} #{(spot.numReviews ? spot.numReviews && spot.numReviews<=1 ? "review": "reviews": "New!")} </h4>
+            </div>
                 </div>
 
                <div className="button-container">

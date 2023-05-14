@@ -23,7 +23,7 @@ export default function GetAllSpots() {
                 {spotsList.map((spot) => (
 
                     <div className="home-images-card tooltip" key={spot.id}>
-                        <Link to={`spots/${spot.id}`}>
+                        <Link className="link-to-spot" to={`spots/${spot.id}`}>
                             <span class="tooltiptext">{spot.name}</span>
                             <div className="spot-index-img">
                                 <img className="image-in-home" src={spot.previewImage} />
@@ -39,7 +39,7 @@ export default function GetAllSpots() {
                                     <p className="spots"><i className="fas fa-star"></i>{spot.avgRating ? spot.avgRating?.toFixed(1) : "New!"}</p>
                                 </div>
                                 <div className="index-price">
-                                    {spot.price}/night
+                                   <h6 className="spotindex-price">{spot.price}</h6> <h6>/night</h6>
                                 </div>
 
                             </div>
