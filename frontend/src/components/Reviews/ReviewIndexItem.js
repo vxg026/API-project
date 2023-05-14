@@ -17,13 +17,9 @@ const ReviewIndexItem = ({review, spotId})=>{
 console.log("reviewwwwwInddxItEM====> ", review.id)
         e.preventDefault();
 
-      dispatch(deleteAReview(review.id)).then(closeModal)
+     await dispatch(deleteAReview(review.id)).then(closeModal)
 
     dispatch(getSpot(spotId))
-
-
-
-
         // history.push(`/spot/${spotId}`)
     }
     return(
