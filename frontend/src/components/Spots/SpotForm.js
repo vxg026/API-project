@@ -58,7 +58,7 @@ const SpotForm = ({ spot, formType }) => {
            ]
          }
 
-        if (formType === "Create Spot") {
+        if (formType === "Create a New Spot") {
             const spotInfo = await dispatch(createSpot(newSpot, user))
 
             console.log("data in spotform", spotInfo)
@@ -86,22 +86,22 @@ const SpotForm = ({ spot, formType }) => {
             <h2>{formType}</h2>
 
             <div className="section1-form">
-            <h4>Where is your place located?</h4>
+            <h4 className="h4">Where is your place located?</h4>
 
-            <p>Guests will only get your exact address once they booked a reservation.</p>
+            <p className="p">Guests will only get your exact address once they booked a reservation.</p>
             {/* <div className="errors">{errors.understanding}</div> */}
-            <label>
+            <label className="form-label">
                 Country:
-                <input type="text"
+                <input className="form-input" type="text"
                     placeholder='Country'
                     value={country}
                     onChange={(e) => setCountry(e.target.value)} />
             </label>
             <p className="errors">{errors.country}</p>
-            <label>
+            <label className="form-label">
 
                 Address:
-                <input
+                <input className="form-input"
                     type="text"
                     placeholder='Street Address'
                     value={address}
@@ -110,9 +110,9 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <p className="errors">{errors.address}</p>
             {/* <div className="errors">{errors.improvement}</div> */}
-            <label>
+            <label className="form-label">
                 City:
-                <input
+                <input className="form-input"
                     type="text"
                     placeholder='City'
                     value={city}
@@ -120,9 +120,9 @@ const SpotForm = ({ spot, formType }) => {
                 />
             </label>
             <p className="errors">{errors.city}</p>
-            <label>
+            <label className="form-label">
                 State:
-                <input
+                <input className="form-input"
                     type="text"
                     placeholder='State'
                     value={state}
@@ -132,9 +132,9 @@ const SpotForm = ({ spot, formType }) => {
             </label>
             <p className="errors">{errors.state}</p>
             </div>
-            {/* <label>
+            {/* <label className="form-label">
                 Lat:
-                <input
+                <input className="form-input"
                     type="text"
                     value={lat}
                     onChange={(e) => setLat(e.target.value)}
@@ -142,9 +142,9 @@ const SpotForm = ({ spot, formType }) => {
 
             </label>
             <p className="errors">{errors.lat}</p>
-            <label>
+            <label className="form-label">
                 Lng:
-                <input
+                <input className="form-input"
                     type="text"
                     value={lng}
                     onChange={(e) => setLng(e.target.value)}
@@ -154,11 +154,11 @@ const SpotForm = ({ spot, formType }) => {
             <p className="errors">{errors.lng}</p> */}
             <div className="section2-form">
                 <h4 className="h4">Describe your place to guests</h4>
-                <p>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
+                <p className="p">Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
 
-            <label>
+            <label className="form-label">
                 Description:
-                <textarea
+                <textarea className="description-form"
                     type="text"
                     value={description}
                     placeholder='Please write at least 30 characters'
@@ -171,10 +171,10 @@ const SpotForm = ({ spot, formType }) => {
 
             <div className="section3-form">
                 <h4 className="h4">Create a title for your spot</h4>
-                <p>Catch guests' attention with a spot title that highlights what makes your place special.</p>
-            <label>
+                <p className="p">Catch guests' attention with a spot title that highlights what makes your place special.</p>
+            <label className="form-label">
                 Name:
-                <input
+                <input className="form-input"
                     type="text"
                     value={name}
                     placeholder='Name of your spot'
@@ -187,10 +187,10 @@ const SpotForm = ({ spot, formType }) => {
 
             <div className="section4-form">
                 <h4 className="h4">Set a base price for your spot</h4>
-                <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
-            <label>
+                <p className="p">Competitive pricing can help your listing stand out and rank higher in search results.</p>
+            <label className="form-label">
                 Price:
-                <input
+                <input className="form-input"
                     type="text"
                     value={price}
                     placeholder="Price per night (USD)"
@@ -205,47 +205,48 @@ const SpotForm = ({ spot, formType }) => {
 
             <div className="section5-form">
                 <h4 className="h4">Liven up your spot with photos</h4>
-                <p>Submit a link to at least one photo to publish your spot.</p>
-            <label>
+                <p className="p">Submit a link to at least one photo to publish your spot.</p>
+            <label className="form-label">
                 ImageUrl
-                <input formAction="image" type="url"
+                <input className="form-input" formAction="image" type="url"
                     value={url1}
                     placeholder='Preview Image URL'
                     onChange={(e) => setUrl1(e.target.value)} />
             </label>
 
-            <label>
+            <label className="form-label">
                 ImageUrl
-                <input formAction="image" type="url"
+                <input className="form-input" formAction="image" type="url"
                     value={url2}
                     placeholder='Image URL'
                     onChange={(e) => setUrl2(e.target.value)} />
             </label>
-            <label>
+            <label className="form-label">
                 ImageUrl
-                <input formAction="image" type="url"
+                <input className="form-input" formAction="image" type="url"
                     value={url3}
                     placeholder='Image URL'
                     onChange={(e) => setUrl3(e.target.value)} />
             </label>
-            <label>
+            <label className="form-label">
                 ImageUrl
-                <input formAction="image" type="url"
+                <input className="form-input" formAction="image" type="url"
                     value={url4}
                     placeholder='Image URL'
                     onChange={(e) => setUrl4(e.target.value)} />
             </label>
-            <label>
+            <label className="form-label">
                 ImageUrl
-                <input formAction="image" type="url"
+                <input className="form-input" formAction="image" type="url"
                     value={url5}
                     placeholder='Image URL'
                     onChange={(e) => setUrl5(e.target.value)} />
             </label>
 
             </div>
-
-            <button type="submit">{formType}</button>
+            <div className="section6-form">
+            <button className="button-form" type="submit">{formType}</button>
+            </div>
         </form>
         </div>
     )
