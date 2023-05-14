@@ -107,10 +107,16 @@ margin-top: 1rem;
     display: flex;
     flex-direction: row;
     border-bottom: solid 2px rgb(176, 166, 166);
+    /* margin-top: 1rem; */
 }
 .spotshow-onwerinfo{
+    margin-top: 1.5rem;
     /* border: 2px solid blueviolet; */
     width:65%;
+}
+.spotshow-onwer-name{
+    /* border: 2px solid red; */
+    margin-bottom: 1rem;
 }
 .spotshow-little-info{
     /* border: 2px solid skyblue; */

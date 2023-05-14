@@ -65,7 +65,7 @@
 }
 .home {
 
-    border: solid 2px blue;
+   
     display:flex;
     flex-wrap: wrap;
     flex-direction: row;
