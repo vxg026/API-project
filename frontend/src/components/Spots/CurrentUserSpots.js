@@ -4,6 +4,7 @@ import { getCurrentUserSpots } from '../../store/spots'
 import SpotIndexItem from './SpotIndexItem'
 import { Link } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
+import './CurrentUserSpots.css'
 
 const GetCurrentSpots = () => {
     const dispatch = useDispatch()
@@ -12,13 +13,13 @@ const GetCurrentSpots = () => {
 
     // console.log("currspotobj", spotObj)
     const spotList = Object.values(spotObj)
-    console.log("spotList -------", spotList)
+    // console.log("spotList -------", spotList)
 
     useEffect(() => {
         dispatch(getCurrentUserSpots());
     }, [dispatch]);
 
-    
+
 
 
     return (<>
@@ -37,7 +38,11 @@ const GetCurrentSpots = () => {
                 <div>
 
                  <h1>{spot.name}</h1>
-                <img src={spot.previewImage}/>
+
+                 <div className="spot-index-img">
+                                <img className="image-in-home" src={spot.previewImage} />
+                            </div>
+                {/* <img src={spot.previewImage}/> */}
                 {/* <img src={spot.previ}/> */}
 
                 <h4>{spot.city}, {spot.state}</h4>

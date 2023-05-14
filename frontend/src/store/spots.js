@@ -61,9 +61,9 @@ export const getCurrentUserSpots = ()=> async dispatch=>{
 
     if(response.ok){
         const data = await response.json()
-
-        dispatch(currentUserSpots(data))
-        return data
+console.log("data from getcurrthunk===>", data)
+        dispatch(getAllSpotsAction(data.Spots))
+        return data.Spots
     }
 }
 
@@ -163,19 +163,20 @@ const spotsReducer = (state=initialState, action)=>{
         case EDIT_SPOT:{
             return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot }, currentUserSpots:{...state.currentUserSpots, [action.spot.id]: action.spot} };
         }
-        case GET_CURRENT_USER_SPOTS:{
-            newState = {...state, allSpots:{...state.allSpots}, currentUserSpots:{...state.currentUserSpots}}
-            // , currentSpot:{...state.currentSpot}
-            // console.log("new state for curr uuser reducer=>", newState)
-            console.log("spots curr", action.spots.Spots)
-            action.spots.Spots.forEach(spot=>{
-                newState.allSpots[spot.id] = spot
-                newState.currentUserSpots[spot.id] = spot
-            })
-            console.log("getuser Spot reducer=>", newState)
-            return newState
+        // case GET_CURRENT_USER_SPOTS:{
+        //     newState={...state, allSpots:{}}
+        //     // newState = {...state, allSpots:{...state.allSpots}, currentUserSpots:{...state.currentUserSpots}}
+        //     // , currentSpot:{...state.currentSpot}
+        //     // console.log("new state for curr uuser reducer=>", newState)
+        //     console.log("spots curr", action.spots.Spots)
+        //     action.spots.Spots.forEach(spot=>{
+        //         newState.allSpots[spot.id] = spot
+        //         // newState.currentUserSpots[spot.id] = spot
+        //     })
+        //     console.log("getuser Spot reducer=>", newState)
+        //     return newState
 
-        }
+        // }
         case DELETE_SPOT:{
             newState = {...state, allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots} }
             delete newState.currentUserSpots[action.spotId]

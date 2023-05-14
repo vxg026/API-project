@@ -152,8 +152,6 @@ router.get('/current', requireAuth, async (req, res, next) => {
         spotJSON.SpotImages.forEach(ele => {
             if (ele.preview === true) {
                 spotJSON.previewImage = ele.url
-            } else {
-                spotJSON.previewImage = 'No preview available'
             }
         })
 
