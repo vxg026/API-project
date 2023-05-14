@@ -1,0 +1,122 @@
+.root{
+    display:flex;
+    justify-content: center;
+    align-items:center
+}
+.home-images-card{
+    width:14rem;
+    height: 16rem;
+    /* border:solid 2px red; */
+    margin-bottom:1rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    align-items: center;
+     /* flex-basis: 25%; */
+    /* flex: 1 0 21%; */
+    /* column-gap: 1rem; */
+    min-width: 22%;
+
+    }
+    .link-to-spot{
+        text-decoration: none;
+    }
+    .tooltip {
+        position: relative;
+        display: inline-block;
+      }
+
+      .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: rgb(184, 166, 166);
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+
+        /* Position the tooltip */
+        /* position: absolute; */
+        position: absolute;
+        top: 10%; /* position tooltip below element */
+        left: 90%; /* center tooltip horizontally */
+        z-index: 1;
+        left: 50%;
+      }
+
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
+      }
+    .index-city-staate-reviews{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%; /* Set width to 100% */
+    /* border: yellow 2px solid; */
+    align-items: flex-start;
+    margin-top: 0.5rem;
+    color: rgb(32, 28, 28);
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: small;
+    font-weight:bolder;
+
+
+}
+.home {
+
+    border: solid 2px blue;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    column-gap: .5rem;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-right:1rem;
+    padding-left: 1rem;
+
+}
+.spot-index-img{
+    width:100%;
+    height:12rem;
+}
+.image-in-home{
+    width:100%;
+    height: 12rem;
+    border: solid pink 1px;
+    border-radius: 10px;
+    flex-wrap:wrap;
+    /* flex-basis: 25%; */
+    /* flex: 1 0 21%; */
+
+}
+
+.card-img-info-index{
+    display: flex;
+    flex-direction: column;
+    width:100%
+}
+
+.index-city-state{
+    display:flex;
+    flex-direction: row;
+    margin-top:0.05rem;
+}
+.fa-star{
+    color: grey;
+}
+.spots{
+    margin-top:0.08
+}
+.index-price{
+    color:black;
+    display:flex;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.spotindex-price{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bolder;
+    font-size:small;
+}

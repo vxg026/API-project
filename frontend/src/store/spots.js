@@ -4,7 +4,12 @@ const GET_SPOT = 'spots/GET_SPOT'
 const GET_CURRENT_USER_SPOTS = 'spots/GET_CURRENT_USER_SPOTS'
 const EDIT_SPOT = 'spots/editSpot'
 const DELETE_SPOT = 'spots/deleteSpot'
+// const CREAT_IMAGE = 'spots/createImage'
 
+// const createImageAction = spotId =>({
+//     type: CREAT_IMAGE,
+//     spotId
+// })
 
 const getAllSpotsAction = spots => ({
     type: GET_ALL_SPOTS,
@@ -62,25 +67,46 @@ export const getCurrentUserSpots = ()=> async dispatch=>{
     }
 }
 
-export const createSpot = (spot)=> async(dispatch)=>{
-    const response = await csrfFetch(`/api/spots`, {
+export const createSpot = (spot, user)=> async(dispatch)=>{
+    try{
+        const response = await csrfFetch(`/api/spots`, {
+            "method":"POST",
+            "headers": { 'Content-Type': 'application/json'},
+            "body": JSON.stringify(
+              spot
+            )
+        })
+            // if(response.ok){
+        const data = await response.json()
+        data.numReviews=0
+        data.avgStarRating=0
+        data.SpotImages=[]
+        data.Owner=user
+        dispatch(createImage(data, spot.SpotImages))
+        console.log("spottss in createspot thhk ", spot)
+        return data
+    }
+
+
+catch(e){
+    const data = await e.json()
+    return data
+}}
+export const createImage = (spot, imageArray)=> async(dispatch)=>{
+    for(let image of imageArray){
+           const response = await csrfFetch(`/api/spots/${spot.id}/images`,{
         "method":"POST",
         "headers": { 'Content-Type': 'application/json'},
         "body": JSON.stringify(
-          spot
+   {       url:image.url,
+          preview:image.preview}
         )
     })
-    if(response.ok){
-        const data = await response.jsonO()
-        dispatch(getSpotAction(data))
-        return data
-    }
-else{
-
     const data = await response.json()
-    return data
-}
+    spot.SpotImages.push(data)
 
+    }
+    dispatch(getSpotAction(spot))
 
 }
 
@@ -115,7 +141,7 @@ export const getSpot = (spotId)=>async(dispatch)=>{
     }
 
 }
-const initialState = {allSpots:{}, currentUserSpots:{}};//hmmnot sure
+const initialState = {allSpots:{}, singleSpot:{}, currentUserSpots:{}};//hmmnot sure
 // , currentSpot:{}
 const spotsReducer = (state=initialState, action)=>{
     let newState;
@@ -132,7 +158,7 @@ const spotsReducer = (state=initialState, action)=>{
 
         }
         case GET_SPOT:{
-            return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot } };
+            return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot },  singleSpot: action.spot}
         }
         case EDIT_SPOT:{
             return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot }, currentUserSpots:{...state.currentUserSpots, [action.spot.id]: action.spot} };
@@ -156,6 +182,12 @@ const spotsReducer = (state=initialState, action)=>{
             delete newState.allSpots[action.spotId]
             return newState
         }
+        // case CREAT_IMAGE:{
+        //     newState={...state, allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots}}
+        //     newState.allSpots.spotImages.forEach(spot=>spot[action.spotId])
+
+        // }
+
         default:
             return state;
     }

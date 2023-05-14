@@ -1,0 +1,39 @@
+.reviewshow-main-container{
+    display:flex;
+    flex-direction: column;
+    /* border: 2px solid red; */
+    width:100%;
+
+}
+
+.review-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* border: 2px solid blue; */
+
+  }
+.review-show-user-name{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size:small;
+    margin-bottom: .8rem;
+}
+.review-show-date{
+    color:grey;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: .6rem;
+    margin-bottom: .8rem;
+
+}
+.review-show-review{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size:.8rem;
+    /* font-style: cursive; */
+}
+.reviewshow-delete-button{
+    background-color: rgb(227, 44, 81);
+    color: white;
+    height: 10px;
+    border: 2px solid red;
+
+}

@@ -20,6 +20,10 @@ const router = express.Router();
 //         .withMessage('Review text is required'),
 //     handleValidationErrors
 // ]
+
+
+
+
 const validateCreatePost = [
     check('address')
     .exists({ checkFalsy: true })
@@ -47,7 +51,10 @@ const validateCreatePost = [
         .withMessage('Name must be less than 50 characters'),
     check('description')
         .exists({ checkFalsy: true })
-        .withMessage('Description is required'),
+        .withMessage('Description is required')
+        .isLength({ min:30 })
+        .withMessage('Description needs a minimum of 30 characters'),
+
     check('price')
         .exists({ checkFalsy: true })
         .isDecimal()

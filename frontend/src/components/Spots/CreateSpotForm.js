@@ -2,7 +2,16 @@ import SpotForm from './SpotForm';
 
 const CreateSpotForm = ()=>{
     const spot = {
-        spot:"", country:"", address:"", city:"", state:"", lat:"", lng:"", description:"", name:"", price:"", url:""
+        spot:"",
+        country:"",
+        address:"",
+        city:"",
+        state:"",
+        description:"",
+        name:"",
+        price:"",
+        preview:"",
+        url:""
     };
 
     return(

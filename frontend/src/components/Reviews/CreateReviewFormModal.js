@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { createReviewThunk } from '../../store/reviews'
+import { getSpot } from '../../store/spots'
 import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { useModal } from '../../context/Modal'
@@ -13,7 +14,7 @@ const ReviewForm = ({reviews, spotId, disabled,formType}) => {
 
 
     const [review, setReview] = useState("")
-    const [stars, setStars] = useState(1)
+    const [stars, setStars] = useState(0)
     const [errors, setErrors] = useState({});
     const [activeRating, setActiveRating]=useState(stars)
 
@@ -28,28 +29,23 @@ const newReview = {...reviews, review, stars }
 
 
         if (formType === "Create Review"){
+            const response = await dispatch(createReviewThunk(newReview, spotId))
+            if(!response.errors){
+            dispatch(getSpot(spotId))
+            }
 
-            return dispatch(createReviewThunk(newReview, spotId))
-            .then(closeModal)
-            // .catch(async (data) =>{
+            if (response.errors) {
+                console.log("response errors===>", response.errors)
+              setErrors(response.errors);
+            } else {
+              closeModal()
 
-            //     if (data.errors) {
-            //                 return setErrors(data.errors)
-            //             }
-            // }
-            // )
+            }
+
+            // return dispatch(createReviewThunk(newReview, spotId))
+            // .then(closeModal)
+
         }
-
-        // if (formType === "Create Review") {
-        //     const data =  dispatch(createReviewThunk(newReview, spotId))
-        //     console.log("REVIEW FORM DATA---->", data)
-        //     if (data.errors) {
-        //         return setErrors(data.errors)
-        //     }
-
-        //     history.push(`/spots/${data.id}`)
-
-        // }
 
 
     }
@@ -96,15 +92,17 @@ console.log("array=>", arr)
     return (
 
         <form onSubmit={handleReviewSubmit}>
+            <label>
             <h2>How was your stay?</h2>
             <textarea
                 type="text"
                 value={review}
                 onChange={e => setReview(e.target.value)}
                 placeholder="Leave your review here" />
-
+            </label>
+        <p className="errors">{errors.review}</p>
         <div>
-            {arr}
+            {arr} Stars
         </div>
 
             {/* {[1, 2, 3, 4, 5].map((i) => (
@@ -122,7 +120,7 @@ console.log("array=>", arr)
 />
                 // <i key={i} onClick={() => setStars(i)} className={i <= stars ? `fas fa-star` : `far fa-star`} />
             ))} */}
-            <button type="submit">Submit your Review</button>
+            <button type="submit" disabled={(review.length<10 || stars===-0)}>Submit your Review</button>
         </form>
     )
 }

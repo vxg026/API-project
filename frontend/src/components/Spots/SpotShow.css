@@ -1,0 +1,187 @@
+.root{
+    /* border: red 2px solid; */
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+}
+
+.reviews {
+    display:flex;
+    flex-direction: column-reverse;
+}
+
+/* .description{
+    border-bottom: solid 2px rgb(176, 166, 166);
+} */
+.newSpotLink{
+    text-decoration: none;
+}
+.home{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top:1rem;
+}
+.home images{
+width:20%;
+}
+.spotshow-spot-name{
+font-family:sans-serif;
+margin-bottom:1rem;
+margin-top: 1rem;
+/* border: 2px solid red; */
+}
+.spotshow-undertitle{
+    /* border:2px solid red; */
+    padding-bottom:1rem;
+}
+.spotshow-name-city-state-country{
+    display:flex;
+    flex-direction: column;
+    /* border: 2px solid red; */
+    width: 95%;
+    height: 5rem;
+    margin-left: .5rem;
+    margin-bottom: 1em;
+}
+.spotshow-images-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    height: 28rem;
+    width: 95%;
+    /* border: solid red 2px; */
+    justify-content: space-between;
+    gap: .5rem;
+
+}
+.spotshow-preview-image{
+    /* border: solid red 2px; */
+    width:53%;
+    height: 100%;
+
+}
+.spotshow-images{
+    /* border: rgb(59, 152, 170) solid 2px; */
+    width: 46%;
+    height:100%;
+    display:flex;
+    /* gap: .5rem; */
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 0.5rem;
+
+
+}
+.spotshow-preview-ima{
+    width: 100%;
+    height:100%;
+    border-radius: 25px 0 0 25px;
+}
+.spotshow-img {
+
+    /* border: rgb(98, 98, 169) solid 2px; */
+    height: 49%;
+    width: 48.5%;
+    /* width: 48%; */
+}
+.i1{
+
+}
+.i2{
+
+}
+.i3{
+    border-radius: 0 25px 0 0;
+}
+.i4{
+    border-radius: 0 0 25px 0;
+}
+.spotshow-container-3{
+    /* border: solid 2px red; */
+    width:95%;
+    height: 15rem;
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 2px rgb(176, 166, 166);
+}
+.spotshow-onwerinfo{
+    /* border: 2px solid blueviolet; */
+    width:65%;
+}
+.spotshow-little-info{
+    /* border: 2px solid skyblue; */
+    width: 40%;
+    display:flex;
+    justify-content: end;
+}
+.spotshow-info{
+    display:flex;
+    flex-direction: column;
+    margin-top:.8rem;
+    padding-top:2rem;
+    /* padding-bottom:.5rem; */
+    border: 2px solid gray;
+    border-radius: 15px;
+    width: 100%;
+    height: 43%;
+    /* justify-content: center; */
+    align-items: center;
+    /* align-items: center; */
+}
+.button-container{
+    padding-top: 1em;
+    display:flex;
+    align-items: center;
+    /* border: 2px solid red; */
+    justify-content: center;
+    width:80%;
+}
+.reserve-button{
+
+    background-color: rgb(227, 44, 81);
+    color: white;
+    height: 2.6rem;
+    width:100%;
+    box-shadow: 5px 5px 10px gray;
+}
+.spotshow-price-stars{
+    display:flex;
+    justify-content: space-between;
+    margin-left:2rem;
+    margin-right: 2rem;
+}
+.spotshow-price{
+    font-family:sans-serif;
+}
+.spotshow-onwer-name{
+    font-size:larger;
+}
+.spotshow-container-four{
+    width:95%;
+    margin-top: 1rem;
+    margin-bottom:1rem;
+    /* border:2px solid red; */
+}
+.spotshow-reviews{
+    display:flex;
+    width: 95%;
+    /* border:2px solid red; */
+}
+.spotshow-price-stars{
+    display: flex;
+    justify-content: space-between;
+    /* border:2px solid red; */
+    width: 80%;
+}
+.review{
+    /* border:2px solid red; */
+    margin-bottom: 1rem;
+
+}
+.reviewshow-delete-button{
+    border:2px solid red;
+}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import CreateSpotForm from './CreateSpotForm'
 import { createSpot, updateSpot } from '../../store/spots'
@@ -7,21 +7,29 @@ import { createSpot, updateSpot } from '../../store/spots'
 const SpotForm = ({ spot, formType }) => {
     const dispatch = useDispatch()
 
+    const user = useSelector(state=> state.session.user)
+
     const history = useHistory()
 
 
-    const [country, setCountry] = useState(spot?.country ?? "")//spot country it it exists
-    const [address, setAddress] = useState(spot?.address ?? "")
-    const [city, setCity] = useState(spot?.city ?? "")
-    const [state, setState] = useState(spot?.state ?? "")
-    const [lat, setLat] = useState(spot?.lat ?? "")
-    const [lng, setLng] = useState(spot?.lng ?? "")
-    const [description, setDescription] = useState(spot?.description ?? "")
-    const [name, setName] = useState(spot?.name ?? "")
-    const [price, setPrice] = useState(spot?.price ?? "")
-    const [previewImageUrl, setPreviewImageUrl] = useState(spot?.url ?? "")
-    const [imageUrl, setImageUrl] = useState(spot?.url ?? "")
-    const [url, setUrl] = useState(spot?.url ?? "")
+    const [country, setCountry] = useState(spot?.country)//spot country it it exists
+    const [address, setAddress] = useState(spot?.address)
+    const [city, setCity] = useState(spot?.city)
+    const [state, setState] = useState(spot?.state)
+    const [lat, setLat] = useState(1)
+    const [lng, setLng] = useState(1)
+    const [description, setDescription] = useState(spot?.description)
+    const [name, setName] = useState(spot?.name)
+    const [price, setPrice] = useState(spot?.price)
+    const [previewImage, setPreviewImage] = useState(spot?.url)
+    // const [previewImage, setPreviewUmage]= useState(spot?.previewImage)
+    const [url1, setUrl1] = useState(spot?.SpotImages?.url1)
+    const [url2, setUrl2] = useState(spot?.SpotImages?.url2)
+    const [url3, setUrl3] = useState(spot?.SpotImages?.url3)
+    const [url4, setUrl4] = useState(spot?.SpotImages?.url4)
+    const [url5, setUrl5] = useState(spot?.SpotImages?.url5)
+
+    // const [url, setUrl] = useState(spot?.url)
     const [errors, setErrors] = useState({});
 
 
@@ -29,17 +37,34 @@ const SpotForm = ({ spot, formType }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         setErrors({})
+        const newSpot = { ...spot,
+            country,
+            address,
+            city,
+            state,
+            lat,
+            lng,
+            description,
+            name,
+            price,
+           SpotImages:[
+            {preview:true, url:url1},
+            {preview:false, url:url2},
+            {preview:false, url:url3},
+            {preview:false, url:url4},
+            {preview:false, url:url5},
+           ]
+         }
 
-        const newSpot = { ...spot, country, address, city, state, lat, lng, description, name, price, url }
         if (formType === "Create Spot") {
-            const data = await dispatch(createSpot(newSpot))
-            console.log("data in spotform", data)
-            if (data.errors) {
-                return setErrors(data.errors)
+            const spotInfo = await dispatch(createSpot(newSpot, user))
+
+            console.log("data in spotform", spotInfo)
+            if (spotInfo.errors) {
+                return setErrors(spotInfo.errors)
             }
-            history.push(`/spots/${data.id}`)
+            history.push(`/spots/${spotInfo.id}`)
         }
 
         if (formType === "Update Spot") {
@@ -64,7 +89,9 @@ const SpotForm = ({ spot, formType }) => {
                     value={country}
                     onChange={(e) => setCountry(e.target.value)} />
             </label>
+            <p className="errors">{errors.country}</p>
             <label>
+
                 Address:
                 <input
                     type="text"
@@ -72,6 +99,7 @@ const SpotForm = ({ spot, formType }) => {
                     onChange={(e) => setAddress(e.target.value)}
                 />
             </label>
+            <p className="errors">{errors.address}</p>
             {/* <div className="errors">{errors.improvement}</div> */}
             <label>
                 City:
@@ -81,6 +109,7 @@ const SpotForm = ({ spot, formType }) => {
                     onChange={(e) => setCity(e.target.value)}
                 />
             </label>
+            <p className="errors">{errors.city}</p>
             <label>
                 State:
                 <input
@@ -90,9 +119,9 @@ const SpotForm = ({ spot, formType }) => {
                 />
 
             </label>
+            <p className="errors">{errors.state}</p>
 
-
-            <label>
+            {/* <label>
                 Lat:
                 <input
                     type="text"
@@ -101,6 +130,7 @@ const SpotForm = ({ spot, formType }) => {
                 />
 
             </label>
+            <p className="errors">{errors.lat}</p>
             <label>
                 Lng:
                 <input
@@ -110,7 +140,7 @@ const SpotForm = ({ spot, formType }) => {
                 />
 
             </label>
-
+            <p className="errors">{errors.lng}</p> */}
             <label>
                 Name:
                 <input
@@ -120,15 +150,17 @@ const SpotForm = ({ spot, formType }) => {
                 />
 
             </label>
+            <p className="errors">{errors.name}</p>
             <label>
                 Description:
-                <input
+                <textarea
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
 
             </label>
+            <p className="errors">{errors.description}</p>
             <label>
                 Price:
                 <input
@@ -138,19 +170,38 @@ const SpotForm = ({ spot, formType }) => {
                 />
 
             </label>
-            <label>
-                PreviewImageUrl
-                <input type="url"
-                    value={previewImageUrl}
-                    onChange={(e) => setPreviewImageUrl(e.target.value)} />
+            <p className="errors">{errors.price}</p>
 
+            <label>
+                ImageUrl
+                <input formAction="image" type="url"
+                    value={url1}
+                    onChange={(e) => setUrl1(e.target.value)} />
             </label>
 
             <label>
                 ImageUrl
                 <input formAction="image" type="url"
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)} />
+                    value={url2}
+                    onChange={(e) => setUrl2(e.target.value)} />
+            </label>
+            <label>
+                ImageUrl
+                <input formAction="image" type="url"
+                    value={url3}
+                    onChange={(e) => setUrl3(e.target.value)} />
+            </label>
+            <label>
+                ImageUrl
+                <input formAction="image" type="url"
+                    value={url4}
+                    onChange={(e) => setUrl4(e.target.value)} />
+            </label>
+            <label>
+                ImageUrl
+                <input formAction="image" type="url"
+                    value={url5}
+                    onChange={(e) => setUrl5(e.target.value)} />
             </label>
             <button type="submit">{formType}</button>
         </form>
