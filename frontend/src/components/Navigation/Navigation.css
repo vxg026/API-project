@@ -87,6 +87,9 @@ font-size: 12px;
     width: 5rem;
     height:1.8rem;
     margin-top: .5rem;
+    border: none;
+    box-shadow: 2px 2px 2px rgb(183, 176, 176);
+    height: 1.7rem;
 
 }
 .profile-h6{
