@@ -58,12 +58,14 @@ const GetCurrentSpots = () => {
 
                             </div>
                         </Link>
-
- <button>
-                       <Link to={`/spots/${spot.id}/edit`}>Edit
+<div className="curr-buttons">
+    <div>
+ <button className="curr-delete-button">
+                       <Link className="link" to={`/spots/${spot.id}/edit`}>Edit
                     </Link>
                     </button>
-
+                    </div>
+<div className="modal-curr">
                        <OpenModalButton
                     buttonText="Delete"
                     modalComponent={
@@ -72,6 +74,8 @@ const GetCurrentSpots = () => {
                         />
                     }
                 />
+</div>
+</div>
                 {/* <SpotIndexItem spot={spot} /> */}
 </div>
             </Fragment>

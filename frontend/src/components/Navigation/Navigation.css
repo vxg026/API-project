@@ -79,6 +79,9 @@
 
 font-size: 12px;
 }
+.profile-dropdown:hover{
+    cursor: pointer;
+}
 .logout-button{
     background-color:rgb(244, 47, 90);
     border-radius: 30%;
@@ -108,4 +111,16 @@ font-size: 12px;
 .manage-link{
     margin-top: .5rem;
     text-decoration: none;
+}
+.profile-button{
+    display:flex;
+    gap: .5rem;
+    height: 1.5rem;
+    padding-top: .2rem;
+    border-radius: 10%;
+    width: 3.5rem;
+    border: none;
+    box-shadow: 2px 2px 1px gray;
+    padding-left: .8rem;
+    padding-top: .3rem;
 }

@@ -21,10 +21,23 @@ const SpotIndexItem = ({spot})=>{
 
     return(
 <>
+<div className="delete-container">
+            <div className="confirm-delete">
 <h2>Confrim Delete</h2>
+</div>
+<div className="are-you-sure">
 <p>Are you sure you want to remove this spot from listing?</p>
-<button onClick={handleDelete}>Delete</button>
-<button onClick={closeModal}>No</button>
+</div>
+<div className="delete-buttons">
+    <div>
+<button className="delete-review" onClick={handleDelete}>Delete</button>
+</div>
+
+<div>
+<button className="nope-delete" onClick={closeModal}>No</button>
+</div>
+                </div>
+                </div>
 </>
         // // <li>
         // //     <div>
