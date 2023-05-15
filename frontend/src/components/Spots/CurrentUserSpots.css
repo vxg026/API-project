@@ -1,3 +1,35 @@
 .home-images-card button{
-    boder: 2px solid red;
+    /* border: 2px solid red; */
+    gap: 1rem;
+    margin-top:.5rem;
+}
+.curr-delete-button{
+
+    /* border: 2px solid red; */
+    margin-right:1rem;
+    background-color: gray;
+    color:white;
+    text-decoration: none;
+    width: 4rem;
+    height: 1.5rem;
+    border:none;
+    box-shadow: 2px 2px 1px rgb(59, 56, 56);
+}
+.link{
+    text-decoration: none;
+    color:white;
+}
+.curr-buttons{
+    /* border: 2px solid red; */
+    display:flex;
+}
+.modal-curr button{
+    /* border: 2px solid red; */
+    background-color: gray;
+    color:white;
+    text-decoration: none;
+    width: 4rem;
+    height: 1.5rem;
+    border:none;
+    box-shadow: 2px 2px 1px rgb(59, 56, 56);
 }
