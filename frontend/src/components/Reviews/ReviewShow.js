@@ -5,6 +5,7 @@ import { clearReviews, getSpotReviewsThunk } from "../../store/reviews";
 import ReviewIndexItem from '../Reviews/ReviewIndexItem'
 import OpenModalButton from '../OpenModalButton'
 import './ReviewShow.css'
+import './CreateReviewForm.css'
 
 import CreateReviewForm from "./CreateReview";
 const ReviewShow = ({ spotId }) => {
@@ -102,6 +103,7 @@ if (!spot || spotsArr.length === 0) return null;
 
                     </div>
                     {/* <ReviewIndexItem review={review}/> */}
+                    <div className="delete-review-container">
                     {review.userId === user?.id &&
                         <OpenModalButton
                         className="reviewshow-delete-button"
@@ -112,6 +114,7 @@ if (!spot || spotsArr.length === 0) return null;
                             }
                         />
                     }
+                    </div>
 
                 </div>
             ))}

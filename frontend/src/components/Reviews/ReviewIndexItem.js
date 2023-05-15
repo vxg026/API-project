@@ -24,13 +24,23 @@ console.log("reviewwwwwInddxItEM====> ", review.id)
     }
     return(
         <>
+        <div className="delete-container">
+            <div className="confirm-delete">
         <h2>Confrim delete</h2>
+
+            </div>
+            <div className="are-you-sure">
         <p>Are you sure?</p>
-
-                <button  onClick={handleDelete}>Delete Review</button>
-
-                <button onClick={closeModal}>Nope</button>
-
+</div>
+<div className="delete-buttons">
+    <div>
+                <button  className="delete-review" onClick={handleDelete}>Delete Review</button>
+</div>
+<div>
+                <button className="nope-delete" onClick={closeModal}>Nope</button>
+                </div>
+                </div>
+                </div>
         </>
     )
 }
