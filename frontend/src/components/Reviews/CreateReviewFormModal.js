@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { useModal } from '../../context/Modal'
 import './Review.css'
+import './CreateReviewForm.css'
 
 const ReviewForm = ({reviews, spotId, disabled,formType}) => {
 
@@ -92,16 +93,22 @@ console.log("array=>", arr)
     return (
 
         <form onSubmit={handleReviewSubmit}>
+            <div className="rating">
             <label>
-            <h2>How was your stay?</h2>
+                <div className="how-was-your-day">
+            <h3 clssName="howwas">How was your stay?</h3>
+            </div>
+            <div className="text-your-day">
             <textarea
+            className="textArea-review"
                 type="text"
                 value={review}
                 onChange={e => setReview(e.target.value)}
                 placeholder="Leave your review here" />
+                </div>
             </label>
         <p className="errors">{errors.review}</p>
-        <div>
+        <div className="stars">
             {arr} Stars
         </div>
 
@@ -120,7 +127,8 @@ console.log("array=>", arr)
 />
                 // <i key={i} onClick={() => setStars(i)} className={i <= stars ? `fas fa-star` : `far fa-star`} />
             ))} */}
-            <button type="submit" disabled={(review.length<10 || stars===-0)}>Submit your Review</button>
+            <button className="star-submit" type="submit" disabled={(review.length<10 || stars===-0)}>Submit your Review</button>
+            </div>
         </form>
     )
 }

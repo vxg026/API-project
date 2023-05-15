@@ -2,7 +2,7 @@ import ReviewForm from "./CreateReviewFormModal";
 import OpenModalButton from '../OpenModalButton'
 import { useSelector } from "react-redux";
 import { useState } from "react";
-
+import "./ReviewShow.css"
 
 const CreateReviewForm = ({spotId})=>{
     const newReview = {review:"", starRating:""};
@@ -41,6 +41,7 @@ if(!spot || spotsArr.length===0) return;
         {/* <ReviewForm disabled={false} spotId={spotId} user={user} review={newReview} ormType="Create Review"/> */}
 
 <OpenModalButton
+className="buttons"
     buttonText="Post your review!"
     modalComponent={
 

@@ -61,9 +61,9 @@ export const getCurrentUserSpots = ()=> async dispatch=>{
 
     if(response.ok){
         const data = await response.json()
-
-        dispatch(currentUserSpots(data))
-        return data
+console.log("data from getcurrthunk===>", data)
+        dispatch(getAllSpotsAction(data.Spots))
+        return data.Spots
     }
 }
 
@@ -141,7 +141,7 @@ export const getSpot = (spotId)=>async(dispatch)=>{
     }
 
 }
-const initialState = {allSpots:{}, singleSpot:{}, currentUserSpots:{}};//hmmnot sure
+const initialState = {allSpots:{}, singleSpot:{}};//hmmnot sure
 // , currentSpot:{}
 const spotsReducer = (state=initialState, action)=>{
     let newState;
@@ -149,11 +149,11 @@ const spotsReducer = (state=initialState, action)=>{
     switch(action.type){
         case GET_ALL_SPOTS:{
             newState={...state, allSpots:{}}
-            // console.log("action=>", action)
+
             action.spots.forEach(spot=>{
                 newState.allSpots[spot.id] = spot
             })
-// console.log("newState=>",newState)
+
             return newState
 
         }
@@ -161,32 +161,29 @@ const spotsReducer = (state=initialState, action)=>{
             return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot },  singleSpot: action.spot}
         }
         case EDIT_SPOT:{
-            return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot }, currentUserSpots:{...state.currentUserSpots, [action.spot.id]: action.spot} };
+            return { ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot } };
         }
-        case GET_CURRENT_USER_SPOTS:{
-            newState = {...state, allSpots:{...state.allSpots}, currentUserSpots:{...state.currentUserSpots}}
-            // , currentSpot:{...state.currentSpot}
-            // console.log("new state for curr uuser reducer=>", newState)
-            console.log("spots curr", action.spots.Spots)
-            action.spots.Spots.forEach(spot=>{
-                newState.allSpots[spot.id] = spot
-                newState.currentUserSpots[spot.id] = spot
-            })
-            console.log("getuser Spot reducer=>", newState)
-            return newState
+        // case GET_CURRENT_USER_SPOTS:{
+        //     newState={...state, allSpots:{}}
+        //     // newState = {...state, allSpots:{...state.allSpots}, currentUserSpots:{...state.currentUserSpots}}
+        //     // , currentSpot:{...state.currentSpot}
+        //     // console.log("new state for curr uuser reducer=>", newState)
+        //     console.log("spots curr", action.spots.Spots)
+        //     action.spots.Spots.forEach(spot=>{
+        //         newState.allSpots[spot.id] = spot
+        //         // newState.currentUserSpots[spot.id] = spot
+        //     })
+        //     console.log("getuser Spot reducer=>", newState)
+        //     return newState
 
-        }
+        // }
         case DELETE_SPOT:{
-            newState = {...state, allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots} }
-            delete newState.currentUserSpots[action.spotId]
+            newState = {...state, allSpots:{...state.allSpots} }
+            // delete newState.currentUserSpots[action.spotId]
             delete newState.allSpots[action.spotId]
             return newState
         }
-        // case CREAT_IMAGE:{
-        //     newState={...state, allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots}}
-        //     newState.allSpots.spotImages.forEach(spot=>spot[action.spotId])
 
-        // }
 
         default:
             return state;

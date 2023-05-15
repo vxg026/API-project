@@ -5,6 +5,7 @@ import { clearReviews, getSpotReviewsThunk } from "../../store/reviews";
 import ReviewIndexItem from '../Reviews/ReviewIndexItem'
 import OpenModalButton from '../OpenModalButton'
 import './ReviewShow.css'
+import './CreateReviewForm.css'
 
 import CreateReviewForm from "./CreateReview";
 const ReviewShow = ({ spotId }) => {
@@ -35,7 +36,8 @@ const ReviewShow = ({ spotId }) => {
         }
     }, [dispatch, spotId])
 
-reviewsList.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt))
+
+    reviewsList.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt))
 
 if (!spot || spotsArr.length === 0) return null;
 // if(!user) return null;
@@ -63,8 +65,25 @@ if (!spot || spotsArr.length === 0) return null;
         <>
 
             {console.log("reviewslist----->>>>", reviewsList)}
-            {/* {renderButton && !reviewsList && <h2>Be the first to post a review!</h2>} */}
             <div className="reviewshow-main-container">
+
+            {renderButton && reviewsList.length==0 &&
+
+<h4>Be the first to post a review!</h4>
+}
+  {renderButton && !reviewExists &&
+<div className="post-your-review-button">
+               <>
+
+                 <CreateReviewForm spotId={spotId}/>
+
+
+               </>
+               </div>
+            }
+
+            {/* {renderButton && !reviewsList && <h2>Be the first to post a review!</h2>} */}
+
             {reviewsList && reviewsList.map(review => (
 
                 <div className="review-container" key={review.id}id>
@@ -84,6 +103,7 @@ if (!spot || spotsArr.length === 0) return null;
 
                     </div>
                     {/* <ReviewIndexItem review={review}/> */}
+                    <div className="delete-review-container">
                     {review.userId === user?.id &&
                         <OpenModalButton
                         className="reviewshow-delete-button"
@@ -94,22 +114,11 @@ if (!spot || spotsArr.length === 0) return null;
                             }
                         />
                     }
+                    </div>
 
                 </div>
             ))}
-{renderButton && reviewsList.length==0 &&
 
-<h4>Be the first to post a review!</h4>
-}
-  {renderButton && !reviewExists &&
-
-               (<>
-
-                 <CreateReviewForm spotId={spotId}/>
-
-
-               </>)
-            }
 
 </div>
         </>

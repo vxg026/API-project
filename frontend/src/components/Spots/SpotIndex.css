@@ -63,17 +63,25 @@
 
 
 }
+.managespot{
+    margin-left: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
 .home {
 
-   
+    /* border: solid 2px blue; */
     display:flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction:row-reverse;
     column-gap: .5rem;
     align-items: center;
     justify-content: space-evenly;
+    /* justify-content: flex-start;
+margin-left: 5rem; */
     padding-right:1rem;
     padding-left: 1rem;
+
 
 }
 .spot-index-img{

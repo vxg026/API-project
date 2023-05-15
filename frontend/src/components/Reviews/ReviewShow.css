@@ -3,7 +3,7 @@
     flex-direction: column;
     /* border: 2px solid red; */
     width:100%;
-
+margin-bottom: 5rem;
 }
 
 .review-container {
@@ -36,4 +36,19 @@
     height: 10px;
     border: 2px solid red;
 
+}
+
+.post-your-review-button{
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    /* border: 2px solid red; */
+
+}
+.buttons{
+    background-color: rgb(227, 44, 81);
+    border:none;
+    height: 1.8rem;
+    width: 10rem;
+    color: white;
+    box-shadow: 2px 2px 1px gray;
 }

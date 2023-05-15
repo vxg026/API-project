@@ -45,8 +45,8 @@
 
 }
 .logo{
-    width: 3rem;
-    height: 3.5rem;}
+    width: 2.5rem;
+    height: 2.5rem;}
 .logo-name{
     color: rgb(221, 62, 62);
     font-family:'Times New Roman', Times, serif;
@@ -60,4 +60,52 @@
     justify-content: space-between;
     gap:1rem;
     /* margin-left:2.5%; */
+}
+.profile-dropdown{
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    list-style:none;
+    position: absolute;
+    right:0;
+    z-index: 9999;
+    background-color:white;
+    border: gray 1px solid;
+    /* padding-bottom: .5rem; */
+    padding-right: 2rem;
+    padding-top: .5rem;
+    border-radius: 0%;
+
+font-size: 12px;
+}
+.logout-button{
+    background-color:rgb(244, 47, 90);
+    border-radius: 30%;
+    color:white;
+    text-decoration: none;
+    width: 5rem;
+    height:1.8rem;
+    margin-top: .5rem;
+    border: none;
+    box-shadow: 2px 2px 2px rgb(183, 176, 176);
+    height: 1.7rem;
+
+}
+.profile-h6{
+    font-size:smaller;
+}
+.profile-container-3{
+    border-top:  gray 1px solid;
+    width: 6rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+.manage-spots{
+    margin-top: .5rem;
+    border-top:  gray 1px solid;
+}
+.manage-link{
+    margin-top: .5rem;
+    text-decoration: none;
 }

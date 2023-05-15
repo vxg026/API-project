@@ -1,0 +1,123 @@
+
+.form-main-container{
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    /* gap:1rem; */
+    justify-content: center;
+    align-items: center;
+    width:30%;
+    margin-left: 35%;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.section1-form{
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgb(174, 167, 167);
+    display: flex;
+    flex-direction: column;
+    /* gap:1rem; */
+    justify-content: center;
+    align-items: flex-start;
+    width:99%;
+    /* border:2px solid red; */
+}
+.section2-form{
+    align-items: flex-start;
+    width:99%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgb(174, 167, 167);
+    display: flex;
+    flex-direction: column;
+    /* gap:1rem; */
+    justify-content: center;
+
+}
+.section3-form{
+    align-items: flex-start;
+    width:99%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgb(174, 167, 167);
+    display: flex;
+    flex-direction: column;
+    /* gap:1rem; */
+    justify-content: center;
+
+}
+.section4-form{
+    align-items: flex-start;
+    width:99%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgb(174, 167, 167);
+    display: flex;
+    flex-direction: column;
+    /* gap:1rem; */
+    justify-content: center;
+
+}
+.section5-form{
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgb(174, 167, 167);
+    display: flex;
+    flex-direction: column;
+    /* gap:1rem; */
+    justify-content: center;
+    align-items: flex-start;
+    width:99%;
+}
+.h4{
+    margin-bottom: 1rem;
+}
+.p{
+    margin-bottom:1rem;
+}
+.form-label{
+    display:flex;
+    flex-direction: column;
+}
+.form-input{
+    /* border:2px solid red; */
+    width: 25rem;
+    height: 1.2rem;
+    background-color: rgb(222, 224, 239);
+}
+.errors{
+    color:red;
+}
+.description-form{
+    width: 25rem;
+    height: 5rem;
+    background-color: rgb(222, 224, 239);
+}
+.button-form{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    color:white;
+    background-color: rgb(230, 36, 84);
+    height: 2rem;
+}
+.section6-form{
+    /* border: 2px solid red; */
+    width: 100%;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+margin-bottom: 5rem;
+}
