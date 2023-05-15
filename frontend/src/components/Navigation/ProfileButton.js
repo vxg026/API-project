@@ -54,7 +54,8 @@ console.log("userrrrr=>", user)
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button className="profile-button" onClick={openMenu}>
+      <i class="fas fa-bars"/>
         <i className="fas fa-user-circle" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
