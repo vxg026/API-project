@@ -1,0 +1,45 @@
+.rating{
+    height: 17rem;
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.howwas{
+    font-family: sans-serif;
+    color:red;
+}
+.textArea-review{
+    width: 18rem;
+    height: 6rem;
+    font-family: sans-serif;
+    background-color: rgb(216, 228, 240);
+}
+.how-was-your-day{
+    display: flex;
+margin-top:1rem;
+margin-bottom: 1rem;
+font-family: sans-serif;
+font-weight: 100;
+/* border: 2px solid red; */
+justify-content: center;
+align-items: center;
+color: rgb(73, 69, 69)
+}
+ .text-your-day{
+    margin-bottom: 1rem;
+ }
+.errors{
+    color:red;
+}
+.stars{
+    margin-bottom: 1rem;
+}
+.star-submit{
+    width: 18rem;
+    height: 2.3rem;
+    box-shadow: 4px 4px 4px 4 rgb(57, 53, 53);
+    border:1px solid rgb(223, 215, 215);
+    box-shadow: 2px 2px 1px rgb(158, 155, 155);
+}

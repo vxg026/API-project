@@ -33,16 +33,24 @@ const SpotForm = ({ spot, formType }) => {
     // const [url, setUrl] = useState(spot?.url)
     const [errors, setErrors] = useState({});
 
-
+    const [validationErrors, setValidationErrors] = useState({})
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        if (!url1) {
-            setErrors({ ...errors, previewImage: "Preview image is required" });
 
-        }
+const errors1 = {};
+
+if (!url1) {
+  errors1.previewImage = "Preview Image URL is required";
+} else
+if (!url1?.endsWith(".png") && !url1?.endsWith(".jpg") && !url1?.endsWith(".jpeg")) {
+    errors1.previewImage = "Preview Image URL must end with .png, .jpg, or .jpeg";
+  }
+setValidationErrors(errors1);
+
+
         setErrors({})
         const newSpot = { ...spot,
             country,
@@ -63,14 +71,18 @@ const SpotForm = ({ spot, formType }) => {
            ]
          }
 
+
         if (formType === "Create a New Spot") {
 
             const spotInfo = await dispatch(createSpot(newSpot, user))
 
             console.log("data in spotform", spotInfo)
+
             if (spotInfo.errors) {
-                return setErrors(spotInfo.errors)
+
+                 return setErrors(spotInfo.errors)
             }
+
             history.push(`/spots/${spotInfo.id}`)
         }
 
@@ -83,9 +95,12 @@ const SpotForm = ({ spot, formType }) => {
             history.push(`/spots/${data.id}`)
             return;
         }
+
     }
-    
+
+
     return (
+
         <div className="form-main-container">
         <form className="form"onSubmit={handleSubmit}>
 
@@ -214,37 +229,39 @@ const SpotForm = ({ spot, formType }) => {
                 <p className="p">Submit a link to at least one photo to publish your spot.</p>
             <label className="form-label">
                 ImageUrl
-                <input className="form-input" formAction="image" type="url"
-                    value={url1}
+
+                <input className="form-input" formAction="image"
+                value={url1}
                     placeholder='Preview Image URL'
                     onChange={(e) => setUrl1(e.target.value)} />
             </label>
-            <p className="errors">{errors.previewImage}</p>
+
+            {validationErrors.previewImage && <p className="errors">{validationErrors.previewImage}</p>}
 
             <label className="form-label">
                 ImageUrl
-                <input className="form-input" formAction="image" type="url"
+                <input className="form-input" formAction="image"
                     value={url2}
                     placeholder='Image URL'
                     onChange={(e) => setUrl2(e.target.value)} />
             </label>
             <label className="form-label">
                 ImageUrl
-                <input className="form-input" formAction="image" type="url"
+                <input className="form-input" formAction="image"
                     value={url3}
                     placeholder='Image URL'
                     onChange={(e) => setUrl3(e.target.value)} />
             </label>
             <label className="form-label">
                 ImageUrl
-                <input className="form-input" formAction="image" type="url"
+                <input className="form-input" formAction="image"
                     value={url4}
                     placeholder='Image URL'
                     onChange={(e) => setUrl4(e.target.value)} />
             </label>
             <label className="form-label">
                 ImageUrl
-                <input className="form-input" formAction="image" type="url"
+                <input className="form-input" formAction="image"
                     value={url5}
                     placeholder='Image URL'
                     onChange={(e) => setUrl5(e.target.value)} />
