@@ -29,6 +29,9 @@ const SpotShow = () => {
         dispatch(getSpot(spotId))
     }, [dispatch, spotId])
 
+const  handleReserveButton=()=>{
+     alert("Feature coming soon.")
+}
 
     if (!spot) return null
     if (!spot.SpotImages) return null
@@ -87,7 +90,7 @@ const SpotShow = () => {
                 </div>
 
                <div className="button-container">
-               <button className="reserve-button">Reserve</button>
+               <button onClick={()=>handleReserveButton()} className="reserve-button">Reserve</button>
           </div>
            </div>
             </div>

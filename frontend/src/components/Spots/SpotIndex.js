@@ -15,7 +15,10 @@ export default function GetAllSpots() {
     useEffect(() => {
         dispatch(allSpotsThunk())
     }, [dispatch])
-    // console.log("onespot",spotsList)
+
+   const newSpotsList= spotsList.sort((a,b)=>(a.createdAt)-(b.createdAt))
+
+    console.log("onespot",newSpotsList)
 
     return (
         <>

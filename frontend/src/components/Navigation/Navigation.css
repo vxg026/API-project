@@ -72,10 +72,11 @@
     z-index: 9999;
     background-color:white;
     border: gray 1px solid;
-    padding-bottom: .5rem;
+    /* padding-bottom: .5rem; */
     padding-right: 2rem;
     padding-top: .5rem;
     border-radius: 0%;
+
 font-size: 12px;
 }
 .logout-button{
@@ -86,7 +87,7 @@ font-size: 12px;
     width: 5rem;
     height:1.8rem;
     margin-top: .5rem;
-    
+
 }
 .profile-h6{
     font-size:smaller;
@@ -95,4 +96,13 @@ font-size: 12px;
     border-top:  gray 1px solid;
     width: 6rem;
     margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+.manage-spots{
+    margin-top: .5rem;
+    border-top:  gray 1px solid;
+}
+.manage-link{
+    margin-top: .5rem;
+    text-decoration: none;
 }

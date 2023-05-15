@@ -38,6 +38,11 @@ const SpotForm = ({ spot, formType }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if (!url1) {
+            setErrors({ ...errors, previewImage: "Preview image is required" });
+
+        }
         setErrors({})
         const newSpot = { ...spot,
             country,
@@ -59,6 +64,7 @@ const SpotForm = ({ spot, formType }) => {
          }
 
         if (formType === "Create a New Spot") {
+
             const spotInfo = await dispatch(createSpot(newSpot, user))
 
             console.log("data in spotform", spotInfo)
@@ -78,7 +84,7 @@ const SpotForm = ({ spot, formType }) => {
             return;
         }
     }
-
+    
     return (
         <div className="form-main-container">
         <form className="form"onSubmit={handleSubmit}>
@@ -213,6 +219,7 @@ const SpotForm = ({ spot, formType }) => {
                     placeholder='Preview Image URL'
                     onChange={(e) => setUrl1(e.target.value)} />
             </label>
+            <p className="errors">{errors.previewImage}</p>
 
             <label className="form-label">
                 ImageUrl

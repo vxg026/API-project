@@ -38,7 +38,7 @@ const GetCurrentSpots = () => {
 
 <div className="home-images-card tooltip" key={spot.id}>
                         <Link className="link-to-spot" to={`/spots/${spot.id}`}>
-                            <span class="tooltiptext">{spot.name}</span>
+                            <span className="tooltiptext">{spot.name}</span>
                             <div className="spot-index-img">
                                 <img className="image-in-home" src={spot.previewImage} />
                             </div>

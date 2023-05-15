@@ -35,7 +35,8 @@ const ReviewShow = ({ spotId }) => {
         }
     }, [dispatch, spotId])
 
-reviewsList.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt))
+
+    reviewsList.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt))
 
 if (!spot || spotsArr.length === 0) return null;
 // if(!user) return null;
