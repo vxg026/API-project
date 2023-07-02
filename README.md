@@ -25,6 +25,7 @@ Creating a Spot
 
 One challenge that I encountered was when creating a spot also including the images. In my backend I have images and create a spot as two seperate routes. Therefore, after dispatching the object to the createSpot thunk, I had to then dispatch the array of images to a seperate thunk createImage thunk in order to make a fetch call to the other api route in the backend.
 ```
+//authenticate-me/frontend/src/components/Spots/SpotForm.js
         const newSpot = { ...spot,
             country,
             address,
@@ -60,6 +61,7 @@ One challenge that I encountered was when creating a spot also including the ima
         }
 ```
 ```
+//authenticate-me/frontend/src/store/spots.js
 export const createSpot = (spot, user) => async (dispatch) => {
     try {
         const response = await csrfFetch(`/api/spots`, {
