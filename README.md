@@ -19,6 +19,8 @@ Features
  * Update camping spots (UPDATE)
  * User can remove a spot (DELETE)
 
+![campbnbonespot](https://github.com/vxg026/API-project/assets/123227925/d388c861-a89e-490b-91d6-b23198fa197e)
+
 Examples Code
 Creating a Spot
 
