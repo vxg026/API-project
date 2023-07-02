@@ -20,7 +20,7 @@ Features
  * User can remove a spot (DELETE)
 
 Examples Code
-Star Rating
+Creating a Spot
 
 
 One challenge that I encountered was when creating a spot also including the images. In my backend I have images and create a spot as two seperate routes. Therefore, after dispatching the object to the createSpot thunk, I had to then dispatch the array of images to a seperate thunk createImage thunk in order to make a fetch call to the other api route in the backend.
