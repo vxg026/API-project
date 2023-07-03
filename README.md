@@ -6,13 +6,13 @@ Campbnb is a clone of Airbnb. This site replicates Airbnb functionality, such as
 
 
 ## Technologies
-Backend
+### Backend
  * Express
-FrontEnd
+### FrontEnd
  * React
  * Redux
  * CSS
-Features
+### Features
  * User Authentication
  * User can manage their spots (READ)
  * Create campoing spots (CREATE)
